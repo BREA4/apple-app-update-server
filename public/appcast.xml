@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.3 Build #18</title>
+      <sparkle:version>18</sparkle:version>
+      <sparkle:shortVersionString>0.3</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Mon, 05 Oct 2026 10:58:12 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.3&lt;br&gt;&lt;br&gt;Settings now opens in a separate native Mac window with a Liquid Glass sidebar and grouped controls. App preferences save immediately, and Command-comma reopens the last pane used in the current session.&lt;br&gt;&lt;br&gt;General, Network, DNS, TUN and Sniffer configuration have moved from Dashboard into Settings. The Breach application menu has one Settings command with a gear icon. Duplicate headings and the Settings sidebar toggle have been removed.&lt;br&gt;&lt;br&gt;Accent color swatches match their names. Clicking the Breach logo in the main sidebar opens Dashboard&amp;#x27;s Overview page. The Breach application menu responds promptly when opening or returning to the app.&lt;br&gt;&lt;br&gt;This build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach&amp;#x27;s existing Ed25519 signing key.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.3-beta-build-18/Breach-0.3-build-18-arm64.zip" length="24828828" type="application/octet-stream" sparkle:edSignature="8nnJ+J5MV4mlPKCFzWZTMMF1Gb8Xtcz7Cn0cG4LjzCOwIAXhZ2Ah2ubDEQe/rSfNbZeg6SxEKj9zmQUmaw9nAg=="></enclosure>
+    </item>
+    <item>
       <title>0.2.1 Build #17</title>
       <sparkle:version>17</sparkle:version>
       <sparkle:shortVersionString>0.2.1</sparkle:shortVersionString>
@@ -77,6 +87,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: Oqkd1o5uMeSCRQPv/ATEvtN+KjGgY4WASiBIK3f3VnG9ViZZKqOKV52IYHePhiKPBcWsk8Bv3AnlXYxAgcA8AA==
-length: 10182
+edSignature: LO2WWXCYETN0evqkB2U/s+9FIvHtc8Qr1/OLEfo2HzoNJExEomrlORYHEaAF7mhq2iJPxxcTGK5kySgTcnaiCw==
+length: 11785
 -->

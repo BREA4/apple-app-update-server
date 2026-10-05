@@ -165,9 +165,16 @@
       "build": 18,
       "sourceSHA": "216d8c5e5381bc4a5b8a8779a9aeea9001e30f37",
       "runID": "37297599963",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.3-beta-build-18",
-      "filename": "Breach-0.3-build-18-arm64.zip"
+      "filename": "Breach-0.3-build-18-arm64.zip",
+      "signature": "8nnJ+J5MV4mlPKCFzWZTMMF1Gb8Xtcz7Cn0cG4LjzCOwIAXhZ2Ah2ubDEQe/rSfNbZeg6SxEKj9zmQUmaw9nAg==",
+      "sha256": "c1a88374a354bf9a53ec291c186c29890ee76fd12030cc1b8090e2da301cd9b5",
+      "bytes": 24828828,
+      "notes": "Breach 0.3\n\nSettings now opens in a separate native Mac window with a Liquid Glass sidebar and grouped controls. App preferences save immediately, and Command-comma reopens the last pane used in the current session.\n\nGeneral, Network, DNS, TUN and Sniffer configuration have moved from Dashboard into Settings. The Breach application menu has one Settings command with a gear icon. Duplicate headings and the Settings sidebar toggle have been removed.\n\nAccent color swatches match their names. Clicking the Breach logo in the main sidebar opens Dashboard's Overview page. The Breach application menu responds promptly when opening or returning to the app.\n\nThis build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach's existing Ed25519 signing key.",
+      "publishedAt": "Mon, 05 Oct 2026 10:58:12 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.3-beta-build-18/Breach-0.3-build-18-arm64.zip"
     }
   ]
 }
