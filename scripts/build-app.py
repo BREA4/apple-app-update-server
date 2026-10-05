@@ -11,12 +11,14 @@ import signal
 import subprocess
 import threading
 import time
+import urllib.request
 
 
 def diagnose(path, finished):
     """Temporary stage markers; private paths and test names never reach stdout."""
     started = time.monotonic()
     last_sample = started
+    engine_downloaded = False
     with path.open() as log:
         while True:
             for line in log:
@@ -28,6 +30,7 @@ def diagnose(path, finished):
                     event = "Test " + hashlib.sha256(match[1].encode()).hexdigest()[:16] + " " + match[2]
                 elif "Mach-O 64-bit executable arm64" in line:
                     event = "Engine download verified"
+                    engine_downloaded = True
                 elif line.startswith("breachctl:"):
                     # This synthetic smoke fixture has no user profile or credentials.
                     # Redact runtime paths and token-shaped values before publishing.
@@ -41,6 +44,14 @@ def diagnose(path, finished):
                     print("[DEBUG-ci-9d2f] " + event, flush=True)
             if finished.is_set():
                 return
+            if engine_downloaded:
+                try:
+                    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+                    with opener.open("http://127.0.0.1:27891/", timeout=1) as response:
+                        origin = {"status": response.status, "sentinel": b"breach-smoke-ok" in response.read(100)}
+                except Exception as error:
+                    origin = {"error": type(error).__name__}
+                print("[DEBUG-ci-9d2f] Smoke origin " + json.dumps(origin), flush=True)
             finished.wait(2)
             if time.monotonic() - last_sample >= 60:
                 rows = subprocess.run(["ps", "-axo", "comm=,rss=,pcpu="], capture_output=True, text=True).stdout
