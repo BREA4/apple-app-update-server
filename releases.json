@@ -26,7 +26,7 @@
       "build": 8,
       "sourceSHA": "e5923a02cced36d6b2f800f49c1dae0dad811a63",
       "runID": "37272289687",
-      "status": "building",
+      "status": "failed",
       "betaTag": "0.2.1-beta-build-8",
       "filename": "Breach-0.2.1-build-8-arm64.zip"
     }
