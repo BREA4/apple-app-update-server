@@ -44,9 +44,16 @@
       "build": 10,
       "sourceSHA": "3ad522f2abe3ff676fad36292f26adc4cedf131f",
       "runID": "37274146853",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.2.1-beta-build-10",
-      "filename": "Breach-0.2.1-build-10-arm64.zip"
+      "filename": "Breach-0.2.1-build-10-arm64.zip",
+      "signature": "8c3J5vo1bn7GQsys/10nUWTXBRiJnX5/Q2MqOItuYKi92dfMKdx1mT0yfX1wHD7ppqJTkqNUP+NEkdwyRMPACQ==",
+      "sha256": "db2e676b72ebd2e84d789e3514c089b58ca77a97f99854ffda46262501ed5e66",
+      "bytes": 24754410,
+      "notes": "Breach 0.2.1\n\nMaintenance release of Breach 0.2 Beta.\n\nReleases now use GitHub for signed downloads and the update feed. Build numbers identify each archive, and a beta build can become stable without rebuilding the app.\n\nThis build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach's existing Ed25519 signing key.",
+      "publishedAt": "Mon, 05 Oct 2026 06:50:41 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.2.1-beta-build-10/Breach-0.2.1-build-10-arm64.zip"
     }
   ]
 }

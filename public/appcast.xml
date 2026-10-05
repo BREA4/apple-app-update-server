@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><!-- sparkle-sign-warning:
 IMPORTANT: This file was signed by Sparkle. Any modifications to this file requires re-signing this file with generate_appcast or sign_update! The signed signature will be embedded at the end of this file.
---><rss version="2.0">
+--><rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
   <channel>
     <title>Breach updates</title>
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
+    <item>
+      <title>0.2.1 Build #10</title>
+      <sparkle:version>10</sparkle:version>
+      <sparkle:shortVersionString>0.2.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Mon, 05 Oct 2026 06:50:41 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.2.1&lt;br&gt;&lt;br&gt;Maintenance release of Breach 0.2 Beta.&lt;br&gt;&lt;br&gt;Releases now use GitHub for signed downloads and the update feed. Build numbers identify each archive, and a beta build can become stable without rebuilding the app.&lt;br&gt;&lt;br&gt;This build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach&amp;#x27;s existing Ed25519 signing key.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.2.1-beta-build-10/Breach-0.2.1-build-10-arm64.zip" length="24754410" type="application/octet-stream" sparkle:edSignature="8c3J5vo1bn7GQsys/10nUWTXBRiJnX5/Q2MqOItuYKi92dfMKdx1mT0yfX1wHD7ppqJTkqNUP+NEkdwyRMPACQ=="></enclosure>
+    </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: 361jtNXufCPUDmEeCLLkQQF0p1BbubRa/OLLgYABwYtbhx2vGSwC32Gm0abF7qu47Tuu4SOZi6W6kDgUASkWDA==
-length: 514
+edSignature: aN1gHQN7NpebNSsxOUTw9xaIMMr49nFAM+Tg63zPKGC9NPvAqsQVMqzQU3kbq1cz9DmhamOhcBgexZa/SYOQBg==
+length: 1731
 -->
