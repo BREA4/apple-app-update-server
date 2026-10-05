@@ -41,6 +41,15 @@ branch and GitHub's Actions status. A commit changing the cron expression update
 the schedule and its associated actor. Verify recovery with an actual `schedule`
 run; a successful manual dispatch alone does not establish recovery.
 
+If the active beta workflow still has no scheduled runs, compare it with a
+temporary workflow on `main` using `*/5 * * * *`, `permissions: {}`, and a single
+Ubuntu step that prints the event name. Verify its manual dispatch, then inspect
+its `schedule` events. If neither workflow receives a scheduled event, the
+failure also occurs without the beta workflow's credentials, runner, conditions,
+or concurrency group. An operational GitHub status page does not resolve that
+repository-specific result. Record workflow IDs, cron expressions, commit SHAs,
+and the observation window for GitHub Support, then remove the temporary probe.
+
 Build and promotion workflows share a FIFO concurrency group with `queue: max`.
 This is supported by [GitHub's concurrency syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#concurrency);
 older workflow linters may not recognize it or the preview `xcode-27` label.
