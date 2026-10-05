@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "nextBuild": 16,
-  "lastSourceSHA": "a20969d1a970e7b02e83a56d953eec5dcf5fee44",
+  "nextBuild": 17,
+  "lastSourceSHA": "566149ed14902e36c6218eea9281e5fac348c912",
   "builds": [
     {
       "version": "0.2.1",
@@ -127,6 +127,15 @@
       "publishedAt": "Mon, 05 Oct 2026 10:44:22 +0000",
       "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
       "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.2.1-beta-build-15/Breach-0.2.1-build-15-arm64.zip"
+    },
+    {
+      "version": "0.2.1",
+      "build": 16,
+      "sourceSHA": "566149ed14902e36c6218eea9281e5fac348c912",
+      "runID": "37297592629",
+      "status": "building",
+      "betaTag": "0.2.1-beta-build-16",
+      "filename": "Breach-0.2.1-build-16-arm64.zip"
     }
   ]
 }
