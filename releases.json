@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "nextBuild": 7,
+  "nextBuild": 8,
   "lastSourceSHA": "e5923a02cced36d6b2f800f49c1dae0dad811a63",
   "builds": [
     {
@@ -11,6 +11,15 @@
       "status": "failed",
       "betaTag": "0.2.1-beta-build-6",
       "filename": "Breach-0.2.1-build-6-arm64.zip"
+    },
+    {
+      "version": "0.2.1",
+      "build": 7,
+      "sourceSHA": "e5923a02cced36d6b2f800f49c1dae0dad811a63",
+      "runID": "37271192157",
+      "status": "building",
+      "betaTag": "0.2.1-beta-build-7",
+      "filename": "Breach-0.2.1-build-7-arm64.zip"
     }
   ]
 }
