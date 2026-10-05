@@ -39,8 +39,9 @@ def diagnose(path, finished):
                     event = "Engine smoke test completed" if json.loads(line).get("ok") else "Engine smoke test failed"
                 if event:
                     print("[DEBUG-ci-9d2f] " + event, flush=True)
-            if finished.wait(2):
+            if finished.is_set():
                 return
+            finished.wait(2)
             if time.monotonic() - last_sample >= 60:
                 rows = subprocess.run(["ps", "-axo", "comm=,rss=,pcpu="], capture_output=True, text=True).stdout
                 samples = collections.Counter()
