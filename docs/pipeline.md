@@ -1,0 +1,82 @@
+# Pipeline maintenance
+
+`release-config.json` defines the source repository, feed endpoint, pinned public
+key, platform requirement, and archive budget. `releases.json` is the authoritative
+counter and catalog; `public/` is generated from it. The app's manifest supplies
+the version but its local development build number is replaced in the CI checkout.
+
+## Source and workflow access
+
+Source access uses the organization's installed GitHub App, BREA4 PREA4ER.
+`RELEASE_APP_CLIENT_ID` and `RELEASE_APP_CLIENT_KEY` are existing organization
+Actions credentials. Each source-fetch job creates a short-lived installation
+token restricted to `BREA4/apple-app` with Contents read-only; the action revokes
+it when the job ends. Renew the App key through organization secrets if rotated.
+Git receives the token through an ephemeral askpass helper, rather than a
+credential in the remote URL or command arguments. The helper is deleted before
+app code runs. Only private main commits are built; fork pull requests run public
+pipeline tests without secrets.
+
+The private repository contains no Actions workflow. Public scheduled runs poll
+main, including when private changes are pushed by an agent or merged in GitHub.
+Both scheduled and manual builds use public standard runners; `xcode-27` supplies
+macOS 27 and Xcode 27 ([runner reference](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)).
+The schedule is best effort, not an immediate push webhook.
+GitHub can disable schedules after 60 days without repository activity; a build
+or promotion updates this repository. Check and re-enable the schedule after a
+long idle period before relying on automatic builds.
+
+Build and promotion workflows share a FIFO concurrency group with `queue: max`.
+This is supported by [GitHub's concurrency syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#concurrency);
+older workflow linters may not recognize it or the preview `xcode-27` label.
+Only one mutates the catalog at a time. Catalog and signed feed are committed
+together through a non-forced Git ref update. Concurrent manual changes cause a
+failure rather than replacing a human's commit.
+
+## Signing and publication
+
+`SPARKLE_PRIVATE_KEY` is the existing Sparkle Ed25519 seed, exported from the
+development Mac's Keychain and stored as a GitHub Actions secret. The signing
+step derives its public key with CryptoKit and compares it with the pinned key
+before signing. Temporary key files are removed after signing. Keep a secure
+backup of the original Keychain; changing the key breaks existing installations.
+
+Swift resolves Sparkle 2.10.0's official tools. App code is tested and built before
+the signing secret is made available to the signing step. Private build logs
+remain in the ephemeral runner and are not printed or uploaded. Published assets
+contain the app ZIP and a public release receipt, never a source checkout.
+
+Release publication creates a draft, uploads both assets, and publishes it as an
+immutable beta or stable release. The publisher then downloads the public ZIP,
+verifies its size, SHA-256, Ed25519 signature, and embedded updater metadata, and
+only then publishes the signed appcast. Stable archives are byte-for-byte copies
+of their beta archives. Promotion requires no private source access.
+
+Current builds use ad-hoc code signing and are not notarized. Developer ID signing
+and notarization require configuring Apple's credentials and extending the build
+step; Sparkle signatures authenticate downloaded releases independently.
+
+The feed retains recent eligible items and the newest stable release. Binary
+history stays in GitHub Releases. Stable clients select untagged feed items;
+beta clients also select `sparkle:channel=beta`. Both choose newer integer builds,
+so an older promotion cannot cause a downgrade.
+
+## Feed hosting and migration
+
+GitHub Pages is configured with Actions as its deployment source. The reusable
+`pages.yml` workflow serves only `public/`. To republish a feed after a deployment
+failure, dispatch that workflow and verify the live bytes against the signed
+file in main.
+
+Builds through Vercel build 5 contain the retired Vercel feed URL. Once that
+project is deleted, those installations require a one-time manual installation
+of a GitHub build. New builds embed the Pages feed URL and retain the original
+Sparkle public key.
+
+## Checks
+
+Run `python3 -m unittest discover -s tests -v` before changing pipeline logic.
+Release verification must exercise the actual public asset and live signed feed,
+not only generated fixtures. Compare stable and beta asset hashes when testing
+promotion. Use workflow retries to repair partially published builds; keep
+immutable published releases intact.

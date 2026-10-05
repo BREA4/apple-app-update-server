@@ -1,0 +1,116 @@
+name: Build beta
+run-name: Build beta from private main
+
+on:
+  schedule:
+    - cron: '2-59/5 * * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Build current main even if it was already built
+        type: boolean
+        default: false
+
+# ASVS 15.4.2: beta allocation and promotion share one FIFO writer.
+concurrency:
+  group: breach-release-pipeline
+  queue: max
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  plan:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    outputs:
+      needed: ${{ steps.plan.outputs.needed }}
+      build: ${{ steps.plan.outputs.build }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Read private main using BREA4 PREA4ER
+        id: source-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3
+        with:
+          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_CLIENT_KEY }}
+          owner: BREA4
+          repositories: apple-app
+          permission-contents: read
+      - name: Allocate the next unbuilt main revision
+        id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_READ_TOKEN: ${{ steps.source-token.outputs.token }}
+          FORCE_BUILD: ${{ inputs.force || false }}
+        run: |
+          if [ "$FORCE_BUILD" = true ]; then
+            python3 scripts/pipeline.py plan --force
+          else
+            python3 scripts/pipeline.py plan
+          fi
+
+  build:
+    needs: plan
+    if: needs.plan.outputs.needed == 'true'
+    runs-on: xcode-27
+    timeout-minutes: 45
+    permissions:
+      contents: write
+    env:
+      BUILD_NUMBER: ${{ needs.plan.outputs.build }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Verify public pipeline logic
+        run: python3 -m unittest discover -s tests -v
+      - name: Read private main using BREA4 PREA4ER
+        id: source-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3
+        with:
+          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_CLIENT_KEY }}
+          owner: BREA4
+          repositories: apple-app
+          permission-contents: read
+      - name: Fetch the reserved private source revision
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_READ_TOKEN: ${{ steps.source-token.outputs.token }}
+        run: python3 scripts/pipeline.py checkout "$BUILD_NUMBER" "$RUNNER_TEMP/app-source"
+      - name: Select stable Xcode 27
+        run: |
+          sudo xcode-select -s /Applications/Xcode_27.0.app/Contents/Developer
+          xcodebuild -version
+      - name: Test and build the app
+        run: python3 scripts/build-app.py "$RUNNER_TEMP/app-source"
+      - name: Sign and publish beta
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
+        run: |
+          python3 scripts/pipeline.py publish-beta "$BUILD_NUMBER" \
+            --source "$RUNNER_TEMP/app-source" \
+            --tools "$RUNNER_TEMP/app-source/.build/artifacts/sparkle/Sparkle/bin"
+      - name: Record a failed build
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/pipeline.py failed "$BUILD_NUMBER"
+
+  deploy:
+    needs: build
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write

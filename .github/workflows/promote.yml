@@ -1,0 +1,53 @@
+name: Promote build
+run-name: Promote Build #${{ inputs.build }} to stable
+
+on:
+  workflow_dispatch:
+    inputs:
+      build:
+        description: Existing beta build number to promote without rebuilding
+        type: string
+        required: true
+
+concurrency:
+  group: breach-release-pipeline
+  queue: max
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  promote:
+    if: github.ref == 'refs/heads/main'
+    runs-on: xcode-27
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Verify public pipeline logic
+        run: python3 -m unittest discover -s tests -v
+      - name: Select stable Xcode 27
+        run: sudo xcode-select -s /Applications/Xcode_27.0.app/Contents/Developer
+      - name: Resolve Sparkle signing tools
+        run: swift package resolve
+      - name: Promote the exact signed beta ZIP
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
+          BUILD_NUMBER: ${{ inputs.build }}
+        run: |
+          python3 scripts/pipeline.py promote "$BUILD_NUMBER" \
+            --tools "$GITHUB_WORKSPACE/.build/artifacts/sparkle/Sparkle/bin"
+
+  deploy:
+    needs: promote
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write

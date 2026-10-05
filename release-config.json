@@ -1,0 +1,10 @@
+{
+  "repository": "BREA4/apple-app-update-server",
+  "sourceRepository": "BREA4/apple-app",
+  "sourceBranch": "main",
+  "feedURL": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+  "publicKey": "HfCO9NjPowlOCz6yKpmR/sFSXo5+o38UaCKpfHcnAI4=",
+  "minimumSystemVersion": "27.0",
+  "maximumArchiveBytes": 536870912,
+  "feedItems": 100
+}
