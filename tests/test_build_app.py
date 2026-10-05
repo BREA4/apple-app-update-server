@@ -1,5 +1,4 @@
 from pathlib import Path
-import os
 import subprocess
 import sys
 import tempfile
@@ -17,8 +16,7 @@ class PrivateBuildTests(unittest.TestCase):
             (source / "scripts/test.sh").write_text("trap 'exit 0' TERM\nprintf 'PRIVATE_DIAGNOSTIC\\n'\nsleep 30\n")
             started = time.monotonic()
             result = subprocess.run([sys.executable, str(WRAPPER), str(source), "--phase", "tests", "--timeout", "1"],
-                                    capture_output=True, text=True, timeout=10,
-                                    env={**os.environ, "BREACH_CI_DIAGNOSTICS": "0"})
+                                    capture_output=True, text=True, timeout=10)
             self.assertNotEqual(result.returncode, 0)
             self.assertLess(time.monotonic() - started, 8)
             self.assertIn("exceeded 1 seconds", result.stdout)
@@ -32,8 +30,7 @@ class PrivateBuildTests(unittest.TestCase):
             (source / "scripts/test.sh").write_text("exit 17\n")
             (source / "scripts/build.sh").write_text("printf '%s' \"$1\" > invocation\nprintf 'PRIVATE_BUILD_DETAIL\\n'\n")
             result = subprocess.run([sys.executable, str(WRAPPER), str(source), "--phase", "build"],
-                                    capture_output=True, text=True, timeout=10,
-                                    env={**os.environ, "BREACH_CI_DIAGNOSTICS": "0"})
+                                    capture_output=True, text=True, timeout=10)
             self.assertEqual(result.returncode, 0)
             self.assertEqual((source / "invocation").read_text(), "release")
             self.assertFalse((source / "tests.log").exists())

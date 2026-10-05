@@ -96,12 +96,8 @@ jobs:
         working-directory: ${{ runner.temp }}/app-source
         run: swift package resolve --disable-keychain
       - name: Test the app
-        env:
-          BREACH_CI_DIAGNOSTICS: '1'
         run: python3 scripts/build-app.py "$RUNNER_TEMP/app-source" --phase tests --timeout 900
       - name: Build the release app
-        env:
-          BREACH_CI_DIAGNOSTICS: '1'
         run: python3 scripts/build-app.py "$RUNNER_TEMP/app-source" --phase build --timeout 1500
       - name: Sign and publish beta
         env:
