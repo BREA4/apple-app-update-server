@@ -133,9 +133,16 @@
       "build": 16,
       "sourceSHA": "566149ed14902e36c6218eea9281e5fac348c912",
       "runID": "37297592629",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.2.1-beta-build-16",
-      "filename": "Breach-0.2.1-build-16-arm64.zip"
+      "filename": "Breach-0.2.1-build-16-arm64.zip",
+      "signature": "A+/oNTyB0kjTAfAr6Hb9zrR8F7rMxsDiFwl0T3Wz5Kda/H+e5ALAFakxsWb94jyikH6AFBd/4b8VksKcVwReCg==",
+      "sha256": "f0e92d67c1e1df2410b8061f28f0e2c1661cb7915ade8481352462ac7863732b",
+      "bytes": 24822994,
+      "notes": "Breach 0.2.1\n\nFixes selective routing failures after extended use. Fake-IP DNS mappings now survive unrelated DNS lookups and engine restarts, so applications can continue using cached addresses.\n\nBreach retains these routing mappings in a private local cache. Redir-host mode and disabled DNS keep their existing behavior.\n\nSettings opens in its own native Mac window with a Liquid Glass sidebar, grouped controls and automatic saving. Command-comma reopens the last pane used in the current session.\n\nClicking the Breach logo at the top of the sidebar returns to Dashboard's Overview page.\n\nThis build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach's existing Ed25519 signing key.",
+      "publishedAt": "Mon, 05 Oct 2026 10:48:29 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.2.1-beta-build-16/Breach-0.2.1-build-16-arm64.zip"
     }
   ]
 }
