@@ -94,7 +94,7 @@ jobs:
       - name: Resolve the app's public dependencies
         timeout-minutes: 3
         working-directory: ${{ runner.temp }}/app-source
-        run: swift package resolve
+        run: swift package resolve --disable-keychain
       - name: Test the app
         env:
           BREACH_CI_DIAGNOSTICS: '1'
