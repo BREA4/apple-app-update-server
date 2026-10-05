@@ -1,4 +1,5 @@
 import copy
+import datetime
 import importlib.util
 import json
 from pathlib import Path
@@ -186,6 +187,28 @@ class ArchiveTests(unittest.TestCase):
 
 
 class TransactionTests(unittest.TestCase):
+    def test_idle_heartbeat_keeps_build_counter_and_source_cursor_intact(self):
+        initial = state()
+        original = copy.deepcopy(initial)
+        old = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=31)).isoformat()
+        def update(change, message):
+            self.assertTrue(change(initial))
+            self.assertEqual(message, "Keep automatic release checks active")
+        with patch.object(pipeline, "api", return_value={"committer": {"date": old}}), \
+             patch.object(pipeline, "update_state", side_effect=update) as writer:
+            pipeline.keep_schedule_active("old-head")
+            writer.assert_called_once()
+        self.assertIn("lastHeartbeatAt", initial)
+        del initial["lastHeartbeatAt"]
+        self.assertEqual(initial, original)
+
+    def test_active_repository_does_not_create_heartbeat_commits(self):
+        recent = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        with patch.object(pipeline, "api", return_value={"committer": {"date": recent}}), \
+             patch.object(pipeline, "update_state") as writer:
+            pipeline.keep_schedule_active("recent-head")
+            writer.assert_not_called()
+
     def test_feed_and_catalog_commit_atomically_and_ref_is_not_forced(self):
         initial = state()
         calls = []

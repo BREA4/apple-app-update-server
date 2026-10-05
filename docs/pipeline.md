@@ -22,9 +22,9 @@ main, including when private changes are pushed by an agent or merged in GitHub.
 Both scheduled and manual builds use public standard runners; `xcode-27` supplies
 macOS 27 and Xcode 27 ([runner reference](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)).
 The schedule is best effort, not an immediate push webhook.
-GitHub can disable schedules after 60 days without repository activity; a build
-or promotion updates this repository. Check and re-enable the schedule after a
-long idle period before relying on automatic builds.
+GitHub disables public schedules after 60 days without repository activity.
+An idle poll records a heartbeat when the latest main commit is at least 30 days
+old, keeping checks active without allocating or building another app version.
 
 Build and promotion workflows share a FIFO concurrency group with `queue: max`.
 This is supported by [GitHub's concurrency syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#concurrency);

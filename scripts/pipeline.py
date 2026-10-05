@@ -192,8 +192,21 @@ def output(**values):
         print(text, end="")
 
 
+def keep_schedule_active(head):
+    # An idle public repository loses scheduled workflows after 60 days.
+    commit = api(endpoint(f"git/commits/{head}"))
+    committed = datetime.datetime.fromisoformat(commit["committer"]["date"].replace("Z", "+00:00"))
+    now = datetime.datetime.now(datetime.timezone.utc)
+    if now - committed < datetime.timedelta(days=30):
+        return
+    def heartbeat(state):
+        state["lastHeartbeatAt"] = now.isoformat()
+        return True
+    update_state(heartbeat, "Keep automatic release checks active")
+
+
 def plan(force):
-    _, state = read_state()
+    head, state = read_state()
     run_id = os.environ["GITHUB_RUN_ID"]
     retry = next((record for record in state["builds"] if record["runID"] == run_id), None)
     with tempfile.TemporaryDirectory(prefix="breach-source-") as directory:
@@ -201,6 +214,7 @@ def plan(force):
         with source_checkout(source):
             sha = retry["sourceSHA"] if retry else choose_source(source, state, force)
             if not sha:
+                keep_schedule_active(head)
                 output(needed="false")
                 return
             manifest = json.loads(run("git", "show", f"{sha}:release.json", cwd=source).stdout)

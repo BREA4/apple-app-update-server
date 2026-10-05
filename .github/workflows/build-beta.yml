@@ -91,8 +91,10 @@ jobs:
         run: |
           sudo xcode-select -s /Applications/Xcode_27.0.app/Contents/Developer
           xcodebuild -version
-      - name: Test and build the app
-        run: python3 scripts/build-app.py "$RUNNER_TEMP/app-source"
+      - name: Test the app
+        run: python3 scripts/build-app.py "$RUNNER_TEMP/app-source" --phase tests
+      - name: Build the release app
+        run: python3 scripts/build-app.py "$RUNNER_TEMP/app-source" --phase build
       - name: Sign and publish beta
         env:
           GH_TOKEN: ${{ github.token }}
