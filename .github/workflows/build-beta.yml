@@ -92,9 +92,13 @@ jobs:
           sudo xcode-select -s /Applications/Xcode_27.0.app/Contents/Developer
           xcodebuild -version
       - name: Test the app
-        run: python3 scripts/build-app.py "$RUNNER_TEMP/app-source" --phase tests
+        env:
+          BREACH_CI_DIAGNOSTICS: '1'
+        run: python3 scripts/build-app.py "$RUNNER_TEMP/app-source" --phase tests --timeout 900
       - name: Build the release app
-        run: python3 scripts/build-app.py "$RUNNER_TEMP/app-source" --phase build
+        env:
+          BREACH_CI_DIAGNOSTICS: '1'
+        run: python3 scripts/build-app.py "$RUNNER_TEMP/app-source" --phase build --timeout 1500
       - name: Sign and publish beta
         env:
           GH_TOKEN: ${{ github.token }}
