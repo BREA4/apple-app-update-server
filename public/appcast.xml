@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.2.1 Build #13</title>
+      <sparkle:version>13</sparkle:version>
+      <sparkle:shortVersionString>0.2.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Mon, 05 Oct 2026 10:36:46 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.2.1&lt;br&gt;&lt;br&gt;Fixes selective routing failures after extended use. Fake-IP DNS mappings now survive unrelated DNS lookups and engine restarts, so applications can continue using cached addresses.&lt;br&gt;&lt;br&gt;Breach retains these routing mappings in a private local cache. Redir-host mode and disabled DNS keep their existing behavior.&lt;br&gt;&lt;br&gt;This build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach&amp;#x27;s existing Ed25519 signing key.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.2.1-beta-build-13/Breach-0.2.1-build-13-arm64.zip" length="24756752" type="application/octet-stream" sparkle:edSignature="UmR69A2ZxR/k+W11wPSNrdpLg2vNtCjPaud3SRJdfokbBfstaYFsoVeN4vLXkxSYz0iwj/nfg4TUFmh5MaLWDQ=="></enclosure>
+    </item>
+    <item>
       <title>0.2.1 Build #12</title>
       <sparkle:version>12</sparkle:version>
       <sparkle:shortVersionString>0.2.1</sparkle:shortVersionString>
@@ -37,6 +47,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: phA1ZGaoFd3/Qx3lo0qPsF/V1jfp5uSuzPxAC7GTWG9Y8IWhJp4/x05h72VwbirGt1un54816/42oGJxzohbAg==
-length: 4235
+edSignature: vXEW9oNsbU7sZhnD1QvNrsYSSAzGsMzQPPnWBXOUksmNlGAcWr6ChueaI+pmegeb+aUBRTTZ6OO/ATeRU+LeBg==
+length: 5487
 -->
