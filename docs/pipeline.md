@@ -13,7 +13,8 @@ Actions credentials. Each source-fetch job creates a short-lived installation
 token restricted to `BREA4/apple-app` with Contents read-only; the action revokes
 it when the job ends. Renew the App key through organization secrets if rotated.
 Git receives the token through an ephemeral askpass helper, rather than a
-credential in the remote URL or command arguments. The helper is deleted before
+credential in the remote URL or command arguments. Persistent Git credential
+helpers are disabled for the fetch, and the askpass helper is deleted before
 app code runs. Only private main commits are built; fork pull requests run public
 pipeline tests without secrets.
 
@@ -41,10 +42,14 @@ step derives its public key with CryptoKit and compares it with the pinned key
 before signing. Temporary key files are removed after signing. Keep a secure
 backup of the original Keychain; changing the key breaks existing installations.
 
+SwiftPM resolves dependencies with `--disable-keychain` on the headless runner;
+its default Keychain lookup can otherwise wait for an interactive prompt.
 Swift resolves Sparkle 2.10.0's official tools. App code is tested and built before
 the signing secret is made available to the signing step. Private build logs
-remain in the ephemeral runner and are not printed or uploaded. Published assets
-contain the app ZIP and a public release receipt, never a source checkout.
+remain in the ephemeral runner and are not printed or uploaded. Tests and release
+compilation have separate time limits; a timed-out phase fails publication.
+Published assets contain the app ZIP and a public release receipt, never a
+source checkout.
 
 Release publication creates a draft, uploads both assets, and publishes it as an
 immutable beta or stable release. The publisher then downloads the public ZIP,

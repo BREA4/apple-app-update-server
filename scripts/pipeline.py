@@ -157,7 +157,8 @@ def reserve(state, version, source_sha, run_id):
 @contextlib.contextmanager
 def source_checkout(destination):
     # ASVS 13.3.1, 13.3.2: the short-lived App token is read-only and
-    # its credential helper is removed before app code is executed.
+    # its askpass helper is removed before app code is executed. Disable Git's
+    # persistent credential helpers so the token never enters the runner Keychain.
     token = os.environ.get("SOURCE_READ_TOKEN", "")
     if not token:
         raise ValueError("Provide the BREA4 PREA4ER source-read token as SOURCE_READ_TOKEN")
@@ -169,7 +170,7 @@ def source_checkout(destination):
         origin = f"https://github.com/{CONFIG['sourceRepository']}.git"
         run("git", "init", "--quiet", destination)
         run("git", "remote", "add", "origin", origin, cwd=destination)
-        run("git", "fetch", "--quiet", "origin", CONFIG["sourceBranch"], cwd=destination, env=environment)
+        run("git", "-c", "credential.helper=", "fetch", "--quiet", "origin", CONFIG["sourceBranch"], cwd=destination, env=environment)
         yield environment
 
 
