@@ -27,6 +27,20 @@ GitHub disables public schedules after 60 days without repository activity.
 An idle poll records a heartbeat when the latest main commit is at least 30 days
 old, keeping checks active without allocating or building another app version.
 
+To check the scheduler itself, list runs with the schedule event:
+
+```sh
+gh run list --repo BREA4/apple-app-update-server --workflow build-beta.yml --event schedule --limit 5
+gh api repos/BREA4/apple-app-update-server/actions/workflows/build-beta.yml --jq .state
+```
+
+Manual runs do not confirm that the scheduler works. If the workflow is disabled,
+enable it with `gh workflow enable build-beta.yml --repo BREA4/apple-app-update-server`.
+If it is active but no scheduled runs arrive, check the workflow on the default
+branch and GitHub's Actions status. A commit changing the cron expression updates
+the schedule and its associated actor. Verify recovery with an actual `schedule`
+run; a successful manual dispatch alone does not establish recovery.
+
 Build and promotion workflows share a FIFO concurrency group with `queue: max`.
 This is supported by [GitHub's concurrency syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#concurrency);
 older workflow linters may not recognize it or the preview `xcode-27` label.
