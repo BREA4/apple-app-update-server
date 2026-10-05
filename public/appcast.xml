@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.2.1 Build #15</title>
+      <sparkle:version>15</sparkle:version>
+      <sparkle:shortVersionString>0.2.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Mon, 05 Oct 2026 10:44:22 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.2.1&lt;br&gt;&lt;br&gt;Fixes selective routing failures after extended use. Fake-IP DNS mappings now survive unrelated DNS lookups and engine restarts, so applications can continue using cached addresses.&lt;br&gt;&lt;br&gt;Breach retains these routing mappings in a private local cache. Redir-host mode and disabled DNS keep their existing behavior.&lt;br&gt;&lt;br&gt;Settings opens in its own native Mac window with a Liquid Glass sidebar, grouped controls and automatic saving. Command-comma reopens the last pane used in the current session.&lt;br&gt;&lt;br&gt;Clicking the Breach logo at the top of the sidebar returns to Dashboard&amp;#x27;s Overview page.&lt;br&gt;&lt;br&gt;This build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach&amp;#x27;s existing Ed25519 signing key.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.2.1-beta-build-15/Breach-0.2.1-build-15-arm64.zip" length="24825100" type="application/octet-stream" sparkle:edSignature="lTFGQJz1QalZTCmSZixkl23qFSkeWcp6qzXIBM4PgB3Hc9SDJPJQP9lIwPTUVREIvw65AcliP/SJ+gzoD2gyAw=="></enclosure>
+    </item>
+    <item>
       <title>0.2.1 Build #13</title>
       <sparkle:version>13</sparkle:version>
       <sparkle:shortVersionString>0.2.1</sparkle:shortVersionString>
@@ -47,6 +57,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: vXEW9oNsbU7sZhnD1QvNrsYSSAzGsMzQPPnWBXOUksmNlGAcWr6ChueaI+pmegeb+aUBRTTZ6OO/ATeRU+LeBg==
-length: 5487
+edSignature: LdbQ5GzI/N95QX6sY8MaqtvTPbg9nHX/82v76XrtgSSsY0irvVCQUqhu2xfZKmJZniuKwHymJa5XxZiHe8WeBQ==
+length: 7052
 -->
