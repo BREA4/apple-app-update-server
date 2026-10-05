@@ -28,6 +28,13 @@ def diagnose(path, finished):
                     event = "Test " + hashlib.sha256(match[1].encode()).hexdigest()[:16] + " " + match[2]
                 elif "Mach-O 64-bit executable arm64" in line:
                     event = "Engine download verified"
+                elif line.startswith("breachctl:"):
+                    # This synthetic smoke fixture has no user profile or credentials.
+                    # Redact runtime paths and token-shaped values before publishing.
+                    event = re.sub(r"/\S+", "<path>", line)
+                    event = re.sub(r"[A-Za-z0-9+/=_-]{24,}", "<REDACTED>", event)[:400]
+                elif "No such file or directory" in line:
+                    event = "Smoke fixture executable or file is missing"
                 elif line.startswith('{"checks":'):
                     event = "Engine smoke test completed" if json.loads(line).get("ok") else "Engine smoke test failed"
                 if event:
@@ -91,5 +98,6 @@ for phase, label, args in (("tests", "Tests", ["bash", "scripts/test.sh"]),
             if observer:
                 observer.join(timeout=3)
     if timed_out or process.returncode:
+        print(f"{label} subprocess exit status: {process.returncode}", flush=True)
         raise SystemExit(f"{label} failed. Reproduce this source revision locally for diagnostics.")
     print(f"{label} passed", flush=True)
