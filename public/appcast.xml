@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.6 Build #37</title>
+      <sparkle:version>37</sparkle:version>
+      <sparkle:shortVersionString>0.6</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Fri, 09 Oct 2026 16:05:39 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.6 Beta&lt;br&gt;&lt;br&gt;GENERAL UPDATES&lt;br&gt;&lt;br&gt;- Explore your routes in Apple Maps. Switch between 2D and 3D, zoom out to see the globe, and use your trackpad to move, zoom and rotate the map.&lt;br&gt;- Choose a departure city or time period with one click. The arrow above the zoom buttons smoothly brings you back to your departure point.&lt;br&gt;- You can use your current location as the departure point. The location links open the right page in macOS Settings, and Breach tries again when you return. Breach does not save your location.&lt;br&gt;- Move the pointer near the left edge to reveal a hidden sidebar. It stays closed while you are moving the map. Map now sits directly below Logs.&lt;br&gt;- Added glass styling throughout the app, including Settings and the profile editor.&lt;br&gt;- Customize keyboard shortcuts in Settings, directly below Permissions.&lt;br&gt;- Press Command-S to show or hide the sidebar, and Command-Shift-S to connect or disconnect. Command-Up/Down moves between sections in the main window and Settings. Command-S still saves in editors.&lt;br&gt;- Hold Command for half a second to see navigation shortcuts beside sidebar items.&lt;br&gt;- Simplified Notifications settings and the introduction to Third-Party Notices.&lt;br&gt;&lt;br&gt;BUG FIXES&lt;br&gt;&lt;br&gt;- Planes now stay on their visible routes in 3D.&lt;br&gt;- Map buttons are easier to click and remain readable with every app color in light and dark mode. Click animations are back, without the flicker.&lt;br&gt;- Sidebar icons, text and status labels line up properly. Sidebar buttons are easier to click, and the Energy saving leaf turns green.&lt;br&gt;- The connection buttons stay on the right when the app opens.&lt;br&gt;- The profile editor fits inside the import window. Text colors appear as soon as the editor opens, even for large files.&lt;br&gt;- Profile menus close smoothly, without the three dots flickering. Removed the extra storage message from the Profiles page.&lt;br&gt;- Location errors appear once, and the location message disappears once Breach finds your location.&lt;br&gt;- Settings errors show the explanation without the extra &amp;quot;Not saved&amp;quot; text.&lt;br&gt;&lt;br&gt;macOS may show a security warning when you open this beta because it has not been checked by Apple.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.6-beta-build-37/Breach-0.6-build-37-arm64.dmg" length="26069797" type="application/octet-stream" sparkle:edSignature="7Efi9LiK3NQCqkrtV5ompFfoSInEqdFvja35E4u7XVymLwyZZwzGs5ifXODXBMUW6aJi7NBZlJj/hUITtV0uAQ=="></enclosure>
+    </item>
+    <item>
       <title>0.5 Build #36</title>
       <sparkle:version>36</sparkle:version>
       <sparkle:shortVersionString>0.5</sparkle:shortVersionString>
@@ -277,6 +287,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: 9K/vmHlOVJJU4lw0dDaXEgTRsZ8hbrOFFWi2ARrgtui/OnCYJpcbWKgUAttu8SwFXGKJ/KMGLDjJQX5ofm1QDw==
-length: 48196
+edSignature: tOxcbWVjhfW9XxUF4rMcv3nAO6FTKNCqiR8plKwo/lpy4DDgCZa57InvvMfyQ2UJ3Kef7H3McI8h8V16y8NICg==
+length: 51256
 -->

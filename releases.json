@@ -476,9 +476,16 @@
       "build": 37,
       "sourceSHA": "4b2cc76f5c18c8d3b4d965b19ce2deb32525d665",
       "runID": "37955724000",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.6-beta-build-37",
-      "filename": "Breach-0.6-build-37-arm64.dmg"
+      "filename": "Breach-0.6-build-37-arm64.dmg",
+      "signature": "7Efi9LiK3NQCqkrtV5ompFfoSInEqdFvja35E4u7XVymLwyZZwzGs5ifXODXBMUW6aJi7NBZlJj/hUITtV0uAQ==",
+      "sha256": "b3de74929aded5d803667d8921e9c0f0adca5e3f1162259e76a6c919c28fae9e",
+      "bytes": 26069797,
+      "notes": "Breach 0.6 Beta\n\nGENERAL UPDATES\n\n- Explore your routes in Apple Maps. Switch between 2D and 3D, zoom out to see the globe, and use your trackpad to move, zoom and rotate the map.\n- Choose a departure city or time period with one click. The arrow above the zoom buttons smoothly brings you back to your departure point.\n- You can use your current location as the departure point. The location links open the right page in macOS Settings, and Breach tries again when you return. Breach does not save your location.\n- Move the pointer near the left edge to reveal a hidden sidebar. It stays closed while you are moving the map. Map now sits directly below Logs.\n- Added glass styling throughout the app, including Settings and the profile editor.\n- Customize keyboard shortcuts in Settings, directly below Permissions.\n- Press Command-S to show or hide the sidebar, and Command-Shift-S to connect or disconnect. Command-Up/Down moves between sections in the main window and Settings. Command-S still saves in editors.\n- Hold Command for half a second to see navigation shortcuts beside sidebar items.\n- Simplified Notifications settings and the introduction to Third-Party Notices.\n\nBUG FIXES\n\n- Planes now stay on their visible routes in 3D.\n- Map buttons are easier to click and remain readable with every app color in light and dark mode. Click animations are back, without the flicker.\n- Sidebar icons, text and status labels line up properly. Sidebar buttons are easier to click, and the Energy saving leaf turns green.\n- The connection buttons stay on the right when the app opens.\n- The profile editor fits inside the import window. Text colors appear as soon as the editor opens, even for large files.\n- Profile menus close smoothly, without the three dots flickering. Removed the extra storage message from the Profiles page.\n- Location errors appear once, and the location message disappears once Breach finds your location.\n- Settings errors show the explanation without the extra \"Not saved\" text.\n\nmacOS may show a security warning when you open this beta because it has not been checked by Apple.",
+      "publishedAt": "Fri, 09 Oct 2026 16:05:39 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.6-beta-build-37/Breach-0.6-build-37-arm64.dmg"
     }
   ]
 }
