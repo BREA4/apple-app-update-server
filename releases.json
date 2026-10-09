@@ -396,9 +396,16 @@
       "build": 32,
       "sourceSHA": "c9646dcccba09379260ff6c8a2aa970e4aa0d571",
       "runID": "37913766999",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.4.1-beta-build-32",
-      "filename": "Breach-0.4.1-build-32-arm64.dmg"
+      "filename": "Breach-0.4.1-build-32-arm64.dmg",
+      "signature": "FlzaPOoJwx1PjhpYsufeDNORSIy5fwz450rLOV9Gx4I3qbwkfbdzsgbNwjUAbA7tr7m0kvwwQSlnse2mRHSGCA==",
+      "sha256": "3e3d4af8b4645ea0b962ebb24bad6c9f7d660a19c7781a1cf46ff522539a3168",
+      "bytes": 25805862,
+      "notes": "Breach 0.4.1 Beta\n\nBUG FIXES\n\n- Fixed the Profiles actions arrow lagging behind when its menu closes.\n- Fixed flickering when switching between Rule, Global and Direct in the dashboard toolbar.\n- Fixed rapid mode changes reverting to an earlier selection.\n- Failed mode changes now restore the previous working mode.\n\nThis beta is not Apple-notarized.",
+      "publishedAt": "Fri, 09 Oct 2026 09:54:23 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.4.1-beta-build-32/Breach-0.4.1-build-32-arm64.dmg"
     }
   ]
 }

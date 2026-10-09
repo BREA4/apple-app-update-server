@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.4.1 Build #32</title>
+      <sparkle:version>32</sparkle:version>
+      <sparkle:shortVersionString>0.4.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Fri, 09 Oct 2026 09:54:23 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.4.1 Beta&lt;br&gt;&lt;br&gt;BUG FIXES&lt;br&gt;&lt;br&gt;- Fixed the Profiles actions arrow lagging behind when its menu closes.&lt;br&gt;- Fixed flickering when switching between Rule, Global and Direct in the dashboard toolbar.&lt;br&gt;- Fixed rapid mode changes reverting to an earlier selection.&lt;br&gt;- Failed mode changes now restore the previous working mode.&lt;br&gt;&lt;br&gt;This beta is not Apple-notarized.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.4.1-beta-build-32/Breach-0.4.1-build-32-arm64.dmg" length="25805862" type="application/octet-stream" sparkle:edSignature="FlzaPOoJwx1PjhpYsufeDNORSIy5fwz450rLOV9Gx4I3qbwkfbdzsgbNwjUAbA7tr7m0kvwwQSlnse2mRHSGCA=="></enclosure>
+    </item>
+    <item>
       <title>0.4.1 Build #31</title>
       <sparkle:version>31</sparkle:version>
       <sparkle:shortVersionString>0.4.1</sparkle:shortVersionString>
@@ -227,6 +237,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: Y7XJUWDhXZAotJF+QuCKEUltbCG/yNetVZHdyvUciNZfWO1ZjzhiHh2z1uDomMXeeETTPdNgw1zxwBQ6nQxfCg==
-length: 39474
+edSignature: C9hL5HOoWLift24ACPkGrlaZFlsOW1Hv+9o8Zr3k5+pI3GV1xwp9Cs4zv2AvE1GYlav54XjopbIDhzDG+5lCDg==
+length: 40623
 -->
