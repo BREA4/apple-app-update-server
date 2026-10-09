@@ -398,7 +398,7 @@ button.addEventListener("click", () => {
 });
 button.hidden = false;
 </script>'''
-    page += '<p><a href="https://github.com/' + CONFIG["repository"] + '/releases">Release notes and all builds</a></p></html>\n'
+    page += '</html>\n'
     return page
 
 
