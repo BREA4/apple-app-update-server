@@ -357,18 +357,38 @@ def render_site(state, signer):
         signer.sign(feed)
         signer.verify(feed)
         signed_feed = feed.read_text()
+    return {"public/appcast.xml": signed_feed, "public/index.html": render_downloads(state), "public/.nojekyll": ""}
+
+
+def render_downloads(state):
+    initial_limit = 10
     rows = []
     for record in sorted(state["builds"], key=lambda record: record["build"], reverse=True):
         if record["status"] not in ("beta", "stable"):
             continue
-        rows.append(f'<tr><td>{html.escape(title(record))}</td><td>{record["status"].title()}</td>'
+        hidden = " hidden" if len(rows) >= initial_limit else ""
+        rows.append(f'<tr{hidden}><td>{html.escape(title(record))}</td><td>{record["status"].title()}</td>'
                     f'<td><a href="{html.escape(record["download"], quote=True)}">Download ZIP</a></td></tr>')
     page = '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">'
-    page += '<title>Breach downloads</title><style>body{font:16px system-ui;max-width:760px;margin:64px auto;padding:0 24px;background:#faf9f6;color:#242424}td,th{padding:12px 24px 12px 0;text-align:left}a{color:#145fa6}table{border-collapse:collapse}tr{border-bottom:1px solid #ddd}</style>'
+    page += '<title>Breach downloads</title><style>body{font:16px system-ui;max-width:760px;margin:64px auto;padding:0 24px;background:#faf9f6;color:#242424}td,th{padding:12px 24px 12px 0;text-align:left}a{color:#145fa6}table{border-collapse:collapse}tr{border-bottom:1px solid #ddd}button{font:inherit;margin-top:20px;padding:10px 16px;color:#145fa6;background:transparent;border:1px solid currentColor;border-radius:6px;cursor:pointer}</style>'
     page += '<h1>Breach downloads</h1><p>For Apple Silicon Macs running macOS 27 or later.</p>'
-    page += '<table><thead><tr><th>Version</th><th>Channel</th><th>Download</th></tr></thead><tbody>'
-    page += "".join(rows) + '</tbody></table><p><a href="https://github.com/' + CONFIG["repository"] + '/releases">Release notes and all builds</a></p></html>\n'
-    return {"public/appcast.xml": signed_feed, "public/index.html": page, "public/.nojekyll": ""}
+    page += '<table><thead><tr><th>Version</th><th>Channel</th><th>Download</th></tr></thead><tbody id="releases">'
+    page += "".join(rows) + '</tbody></table>'
+    if len(rows) > initial_limit:
+        page += '<button type="button" id="show-all-releases" aria-controls="releases" aria-expanded="false" hidden>Show all releases</button>'
+        page += '''<script>
+const button = document.getElementById("show-all-releases");
+const olderReleases = document.querySelectorAll("#releases tr[hidden]");
+button.addEventListener("click", () => {
+    const expanded = button.getAttribute("aria-expanded") !== "true";
+    olderReleases.forEach(row => { row.hidden = !expanded; });
+    button.setAttribute("aria-expanded", String(expanded));
+    button.textContent = expanded ? "Show latest 10" : "Show all releases";
+});
+button.hidden = false;
+</script>'''
+    page += '<p><a href="https://github.com/' + CONFIG["repository"] + '/releases">Release notes and all builds</a></p></html>\n'
+    return page
 
 
 def release_asset(record, channel, archive, signer):

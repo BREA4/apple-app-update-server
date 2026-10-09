@@ -1,5 +1,6 @@
 import copy
 import datetime
+from html.parser import HTMLParser
 import importlib.util
 import json
 from pathlib import Path
@@ -134,6 +135,62 @@ class FeedTests(unittest.TestCase):
         self.assertEqual(builds[0], 49)
         self.assertIn(6, builds)
         self.assertEqual(len(catalog["builds"]), 44)
+
+
+class DownloadPageTests(unittest.TestCase):
+    def parse(self, records):
+        class Page(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.rows = []
+                self.button = None
+                self.row = None
+
+            def handle_starttag(self, tag, attrs):
+                attrs = dict(attrs)
+                if tag == "tr":
+                    self.row = {"hidden": "hidden" in attrs, "text": [], "download": None}
+                elif tag == "a" and self.row is not None:
+                    self.row["download"] = attrs["href"]
+                elif tag == "button":
+                    self.button = attrs
+
+            def handle_data(self, text):
+                if self.row is not None:
+                    self.row["text"].append(text)
+
+            def handle_endtag(self, tag):
+                if tag == "tr":
+                    if self.row["download"]:
+                        self.rows.append(self.row)
+                    self.row = None
+
+        page = Page()
+        page.feed(pipeline.render_downloads(dict(state(), builds=records)))
+        return page
+
+    def test_only_ten_newest_successful_builds_are_initially_visible(self):
+        records = [beta(build) for build in range(6, 21)]
+        records[1] = pipeline.promoted(records[1])
+        records += [dict(beta(21), status="failed"), dict(beta(22), status="building")]
+        page = self.parse(records)
+        visible = [row for row in page.rows if not row["hidden"]]
+        self.assertEqual([row["text"][0] for row in visible],
+                         [f"0.2.1 Build #{build}" for build in range(20, 10, -1)])
+        self.assertEqual(len(page.rows), 15)
+        self.assertEqual([row["download"] for row in page.rows],
+                         [record["download"] for record in reversed(records[:15])])
+        self.assertEqual(page.rows[-2]["text"][1], "Stable")
+        self.assertEqual(page.button["aria-controls"], "releases")
+        self.assertEqual(page.button["aria-expanded"], "false")
+
+    def test_ten_or_fewer_releases_need_no_button(self):
+        for count in (0, 1, 10):
+            with self.subTest(count=count):
+                page = self.parse([beta(build) for build in range(6, 6 + count)])
+                self.assertEqual(len(page.rows), count)
+                self.assertTrue(all(not row["hidden"] for row in page.rows))
+                self.assertIsNone(page.button)
 
 
 class SourceOrderTests(unittest.TestCase):
