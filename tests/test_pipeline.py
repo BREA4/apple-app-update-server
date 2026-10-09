@@ -145,6 +145,8 @@ class DownloadPageTests(unittest.TestCase):
                 self.rows = []
                 self.latest_downloads = {}
                 self.button = None
+                self.selector = None
+                self.options = []
                 self.row = None
 
             def handle_starttag(self, tag, attrs):
@@ -157,6 +159,10 @@ class DownloadPageTests(unittest.TestCase):
                     self.latest_downloads[attrs["id"]] = attrs["href"]
                 elif tag == "button":
                     self.button = attrs
+                elif tag == "select":
+                    self.selector = attrs
+                elif tag == "option":
+                    self.options.append(attrs)
 
             def handle_data(self, text):
                 if self.row is not None:
@@ -174,7 +180,6 @@ class DownloadPageTests(unittest.TestCase):
 
     def test_only_ten_newest_successful_builds_are_initially_visible(self):
         records = [beta(build) for build in range(6, 21)]
-        records[1] = pipeline.promoted(records[1])
         records += [dict(beta(21), status="failed"), dict(beta(22), status="building")]
         page = self.parse(records)
         visible = [row for row in page.rows if not row["hidden"]]
@@ -183,7 +188,8 @@ class DownloadPageTests(unittest.TestCase):
         self.assertEqual(len(page.rows), 15)
         self.assertEqual([row["download"] for row in page.rows],
                          [record["download"] for record in reversed(records[:15])])
-        self.assertEqual(page.rows[-2]["text"][1], "Stable")
+        self.assertTrue(all(row["text"][1] == "Beta" for row in visible))
+        self.assertIsNone(page.selector)
         self.assertEqual(page.button["aria-controls"], "releases")
         self.assertEqual(page.button["aria-expanded"], "false")
 
@@ -194,6 +200,27 @@ class DownloadPageTests(unittest.TestCase):
                 self.assertEqual(len(page.rows), count)
                 self.assertTrue(all(not row["hidden"] for row in page.rows))
                 self.assertIsNone(page.button)
+
+    def test_stable_is_default_even_when_beta_builds_are_newer(self):
+        records = [beta(build) for build in range(20, 40)]
+        records += [pipeline.promoted(beta(build)) for build in range(6, 19)]
+        page = self.parse(records)
+        visible = [row for row in page.rows if not row["hidden"]]
+        self.assertEqual([row["text"][0] for row in visible],
+                         [f"0.2.1 Build #{build}" for build in range(18, 8, -1)])
+        self.assertTrue(all(row["text"][1] == "Stable" for row in visible))
+        self.assertEqual(len(page.rows), 33)
+        self.assertEqual(page.selector["aria-controls"], "releases")
+        self.assertEqual([option["value"] for option in page.options], ["stable", "beta"])
+        self.assertIn("selected", page.options[0])
+        self.assertNotIn("selected", page.options[1])
+
+    def test_stable_only_catalog_needs_no_channel_selector(self):
+        page = self.parse([pipeline.promoted(beta())])
+        self.assertFalse(page.rows[0]["hidden"])
+        self.assertEqual(page.rows[0]["text"][1], "Stable")
+        self.assertIsNone(page.selector)
+        self.assertIsNone(page.button)
 
     def test_latest_downloads_select_newest_successful_build_per_channel(self):
         stable = pipeline.promoted(beta(20))

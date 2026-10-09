@@ -364,15 +364,22 @@ def render_downloads(state):
     initial_limit = 10
     published = sorted((record for record in state["builds"] if record["status"] in ("beta", "stable")),
                        key=lambda record: record["build"], reverse=True)
+    counts = {channel: sum(record["status"] == channel for record in published) for channel in ("stable", "beta")}
+    default_channel = "stable" if counts["stable"] else "beta"
     rows = []
+    visible_count = 0
     for record in published:
-        hidden = " hidden" if len(rows) >= initial_limit else ""
-        rows.append(f'<tr{hidden}><td>{html.escape(title(record))}</td><td>{record["status"].title()}</td>'
+        matches = record["status"] == default_channel
+        hidden = " hidden" if not matches or visible_count >= initial_limit else ""
+        if matches:
+            visible_count += 1
+        rows.append(f'<tr data-channel="{record["status"]}"{hidden}><td>{html.escape(title(record))}</td><td>{record["status"].title()}</td>'
                     f'<td><a href="{html.escape(record["download"], quote=True)}">Download ZIP</a></td></tr>')
     page = '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">'
     page += '<link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any">'
     page += '<title>Breach downloads</title><style>body{font:16px system-ui;max-width:760px;margin:64px auto;padding:0 24px;background:#faf9f6;color:#242424}td,th{padding:12px 24px 12px 0;text-align:left}a{color:#145fa6}table{border-collapse:collapse}tr{border-bottom:1px solid #ddd}button{font:inherit;margin-top:20px;padding:10px 16px;color:#145fa6;background:transparent;border:1px solid currentColor;border-radius:6px;cursor:pointer}'
-    page += '.downloads{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}.download-button{display:inline-flex;flex-direction:column;gap:4px;padding:12px 16px;border:1px solid #145fa6;border-radius:6px;text-decoration:none}.download-button strong{font-weight:600}.download-button small{font-size:13px}.download-button:hover{background:#edf3f8}.download-button.stable{background:#145fa6;color:#fff}.download-button.stable:hover{background:#104d87}</style>'
+    page += '.downloads{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}.download-button{display:inline-flex;flex-direction:column;gap:4px;padding:12px 16px;border:1px solid #145fa6;border-radius:6px;text-decoration:none}.download-button strong{font-weight:600}.download-button small{font-size:13px}.download-button:hover{background:#edf3f8}.download-button.stable{background:#145fa6;color:#fff}.download-button.stable:hover{background:#104d87}'
+    page += '.channel-picker{margin:24px 0}.channel-picker label{margin-right:12px}.channel-picker select{font:inherit;padding:8px 12px;border:1px solid #ddd;border-radius:6px;background:#faf9f6;color:#242424}</style>'
     page += '<h1>Breach downloads</h1><p>For Apple Silicon Macs running macOS 27 or later.</p>'
     downloads = []
     for channel in ("stable", "beta"):
@@ -383,20 +390,51 @@ def render_downloads(state):
                              f'<strong>Download latest {channel}</strong><small>{html.escape(title(record))}</small></a>')
     if downloads:
         page += '<div class="downloads">' + "".join(downloads) + '</div>'
-    page += '<table><thead><tr><th>Version</th><th>Channel</th><th>Download</th></tr></thead><tbody id="releases">'
+    has_selector = bool(counts["stable"] and counts["beta"])
+    if has_selector:
+        page += '<div class="channel-picker" id="channel-picker" hidden><label for="release-channel">Release channel</label><select id="release-channel" aria-controls="releases"><option value="stable" selected>Stable</option><option value="beta">Beta</option></select></div>'
+    page += '<table><thead><tr><th>Version</th><th>Channel</th><th>Download</th></tr></thead>'
+    page += f'<tbody id="releases" data-channel="{default_channel}" data-limit="{initial_limit}">'
     page += "".join(rows) + '</tbody></table>'
-    if len(rows) > initial_limit:
+    has_more = max(counts.values()) > initial_limit
+    if has_more:
         page += '<button type="button" id="show-all-releases" aria-controls="releases" aria-expanded="false" hidden>Show all releases</button>'
+    if has_selector or has_more:
         page += '''<script>
+const table = document.getElementById("releases");
+const rows = [...table.querySelectorAll("tr")];
+const limit = Number(table.dataset.limit);
+const selector = document.getElementById("release-channel");
 const button = document.getElementById("show-all-releases");
-const olderReleases = document.querySelectorAll("#releases tr[hidden]");
-button.addEventListener("click", () => {
-    const expanded = button.getAttribute("aria-expanded") !== "true";
-    olderReleases.forEach(row => { row.hidden = !expanded; });
-    button.setAttribute("aria-expanded", String(expanded));
-    button.textContent = expanded ? "Show latest 10" : "Show all releases";
-});
-button.hidden = false;
+let expanded = false;
+function updateReleases() {
+    const channel = selector ? selector.value : table.dataset.channel;
+    let count = 0;
+    rows.forEach(row => {
+        const matches = row.dataset.channel === channel;
+        row.hidden = !matches || (!expanded && count >= limit);
+        if (matches) count++;
+    });
+    if (button) {
+        button.hidden = count <= limit;
+        button.setAttribute("aria-expanded", String(expanded));
+        button.textContent = expanded ? `Show latest ${limit}` : "Show all releases";
+    }
+}
+if (selector) {
+    selector.addEventListener("change", () => {
+        expanded = false;
+        updateReleases();
+    });
+    document.getElementById("channel-picker").hidden = false;
+}
+if (button) {
+    button.addEventListener("click", () => {
+        expanded = !expanded;
+        updateReleases();
+    });
+}
+updateReleases();
 </script>'''
     page += '</html>\n'
     return page
