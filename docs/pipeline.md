@@ -71,14 +71,22 @@ Swift resolves Sparkle 2.10.0's official tools. App code is tested and built bef
 the signing secret is made available to the signing step. Private build logs
 remain in the ephemeral runner and are not printed or uploaded. Tests and release
 compilation have separate time limits; a timed-out phase fails publication.
-Published assets contain the app ZIP and a public release receipt, never a
-source checkout.
+Published assets contain the app DMG and a public release receipt, never a
+source checkout. New allocations use DMG only. Each image uses APFS and LZFSE
+compression and contains `Breach.app` plus an `/Applications` shortcut. `ditto`
+preserves bundle permissions and framework symlinks before image creation.
+Existing ZIP records and immutable assets stay in their original format,
+including during recovery and promotion. Older versions are not rebuilt or
+repackaged for this transition.
 
 Release publication creates a draft, uploads both assets, and publishes it as an
-immutable beta or stable release. The publisher then downloads the public ZIP,
+immutable beta or stable release. The publisher then downloads the public archive,
 verifies its size, SHA-256, Ed25519 signature, and embedded updater metadata, and
-only then publishes the signed appcast. Stable archives are byte-for-byte copies
-of their beta archives. Promotion requires no private source access.
+only then publishes the signed appcast. DMG verification authenticates the image
+before mounting it read-only, verifies the bundled code signature, reads bounded
+bundle metadata, and detaches it even when verification fails. ZIP verification
+remains available for historical builds. Stable archives are byte-for-byte
+copies of their beta archives. Promotion requires no private source access.
 
 Current builds use ad-hoc code signing and are not notarized. Developer ID signing
 and notarization require configuring Apple's credentials and extending the build

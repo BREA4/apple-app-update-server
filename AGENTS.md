@@ -8,7 +8,10 @@ branch supplies source, version metadata, and release notes. CI runs here.
 
 ## Identity and channels
 
-- A build number identifies one signed ZIP. Numbers increase across all app
+- A build number identifies one signed archive. New allocations use DMG only.
+  Existing ZIP builds retain their assets, hashes, signatures, and format on
+  retry or promotion. Keep older versions as published without rebuilding or
+  repackaging them. Numbers increase across all app
   versions and channels; failed allocations leave gaps. The first GitHub build
   follows the previous Vercel build 5.
 - Release titles use `0.2.1 Build #123`.
@@ -16,7 +19,7 @@ branch supplies source, version metadata, and release notes. CI runs here.
   `0.2.1-release-build-123`. Use numeric version prefixes exactly; `v` prefixes
   and spaces are invalid in release tags.
 - Every successful build starts in beta. Promotion preserves its version, build
-  number, source revision, ZIP bytes, SHA-256, and Ed25519 signature. Channel
+  number, source revision, archive bytes, SHA-256, and Ed25519 signature. Channel
   membership lives in the signed feed, rather than in the app bundle.
 - GitHub releases are immutable. Keep published assets and tags intact. All
   builds remain downloadable even when old entries leave the appcast.
@@ -31,15 +34,15 @@ branch supplies source, version metadata, and release notes. CI runs here.
    check, dispatch `build-beta.yml` with its default `force=false`. To request an
    additional build of unchanged main, set `force=true`.
 3. Follow the run to completion. A beta is complete when its immutable GitHub
-   release has the ZIP and `release.json`, the catalog marks it `beta`, and
+   release has the DMG and `release.json`, the catalog marks it `beta`, and
    `Publish update feed` has deployed the signed feed referencing its asset.
 
 ## Promote a build
 
 1. Read `releases.json` and select an existing successful beta build number.
 2. Dispatch `promote.yml` with the `build` input. This creates the stable tag and
-   release from the original beta ZIP, then signs and deploys the updated feed.
-3. Verify the stable ZIP's SHA-256 matches the beta receipt and the feed's item
+   release from the original beta archive, then signs and deploys the updated feed.
+3. Verify the stable archive's SHA-256 matches the beta receipt and the feed's item
    has the same build number without `sparkle:channel`. Promotion is complete
    when the Pages deployment succeeds. Repeating promotion is safe.
 
