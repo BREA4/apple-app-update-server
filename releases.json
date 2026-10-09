@@ -236,9 +236,16 @@
       "build": 22,
       "sourceSHA": "89260273b100f076f90756b238bb3de8056a124a",
       "runID": "37889798102",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.4-beta-build-22",
-      "filename": "Breach-0.4-build-22-arm64.zip"
+      "filename": "Breach-0.4-build-22-arm64.zip",
+      "signature": "83qd3gWh6nD8WAtFDYd3K4XoHnA0YpJ4jCj7vKKNXbQJgOeiYhgj4q4epC4YzEq9ojGCMg3utVF2XtbyHpL0DA==",
+      "sha256": "bb7d68450c48d29fb8e225709239347c838eb70e8a6731e64e65272bbcd449ac",
+      "bytes": 24858196,
+      "notes": "Breach 0.4 Beta\n\nSettings \u2192 Updates now shows a Stable/Beta selector after confirmed beta opt-in. The selector stays available after switching to Stable and restarting Breach. Existing Beta users get it automatically.\n\nSoftware updates reinstall an existing network helper after relaunch and verify it before restoring your connection. macOS asks for administrator permission to authorize the updated helper.\n\nIf authorization is declined or helper verification fails, Breach stays disconnected and opens Settings \u2192 Permissions to retry. Updates also replace the helper when Breach was disconnected, and keep it uninstalled if it was not present before the update.\n\nThe network helper controls System Proxy and Enhanced Mode. It accepts only the updated signed app and its bundled command-line tool.\n\nThis build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach's existing Ed25519 signing key.",
+      "publishedAt": "Fri, 09 Oct 2026 05:45:43 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.4-beta-build-22/Breach-0.4-build-22-arm64.zip"
     }
   ]
 }
