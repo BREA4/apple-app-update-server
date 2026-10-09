@@ -332,9 +332,16 @@
       "build": 28,
       "sourceSHA": "4b0edcbc9600ba6c49e0c4da7ce8925ba8488010",
       "runID": "37900390083",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.4-beta-build-28",
-      "filename": "Breach-0.4-build-28-arm64.zip"
+      "filename": "Breach-0.4-build-28-arm64.zip",
+      "signature": "g8sjZaz3K6IGy7EXboZ4dwRgOZ2ro5WLHuCYbDrg51xC6ESqrU36RZF5IgM8hydmIPS57PDRaM18C1dKDPT/AA==",
+      "sha256": "8e7c318bb2bc52df2b18c8c1f477f211efaaa8b5f2a08fbbb62be8f0ddac298a",
+      "bytes": 24882442,
+      "notes": "Breach 0.4 Beta\n\nSettings \u2192 About \u2192 Open Third-Party Notices now opens a resizable Breach window. The text supports selection and copying, and the window follows your appearance setting.\n\nSubscriptions now update automatically every hour by default. Your saved on/off choice and interval are preserved. Change either in Settings \u2192 Subscriptions.\n\nThe Profiles actions arrow has more space beside the three dots and rotates up while the menu is open. It stays aligned with the dots and rotates back down when the menu closes.\n\nSettings sidebar icons now follow your chosen accent color immediately in light and dark appearance.\n\nThe map remembers your selected departure city when you reopen the map or restart Breach.\n\nSettings \u2192 Updates now shows a Stable/Beta selector after confirmed beta opt-in. The selector stays available after switching to Stable and restarting Breach. Existing Beta users get it automatically.\n\nSoftware updates reinstall an existing network helper after relaunch and verify it before restoring your connection. macOS asks for administrator permission to authorize the updated helper.\n\nBefore you install, both updater dialogs explain that you will be asked for your password to help you stay connected after the update.\n\nIf authorization is declined or helper verification fails, Breach stays disconnected and opens Settings \u2192 Permissions to retry. Updates also replace the helper when Breach was disconnected, and keep it uninstalled if it was not present before the update.\n\nThe network helper controls System Proxy and Enhanced Mode. It accepts only the updated signed app and its bundled command-line tool.\n\nThis build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach's existing Ed25519 signing key.",
+      "publishedAt": "Fri, 09 Oct 2026 07:44:13 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.4-beta-build-28/Breach-0.4-build-28-arm64.zip"
     }
   ]
 }
