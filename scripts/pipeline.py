@@ -419,7 +419,7 @@ function updateReleases() {
     if (button) {
         button.hidden = count <= limit;
         button.setAttribute("aria-expanded", String(expanded));
-        button.textContent = expanded ? `Show latest ${limit}` : "Show all releases";
+        button.textContent = expanded ? "Show latest" : "Show all releases";
     }
 }
 if (selector) {
