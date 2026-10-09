@@ -178,13 +178,13 @@ class DownloadPageTests(unittest.TestCase):
         page.feed(pipeline.render_downloads(dict(state(), builds=records)))
         return page
 
-    def test_only_ten_newest_successful_builds_are_initially_visible(self):
+    def test_only_five_newest_successful_builds_are_initially_visible(self):
         records = [beta(build) for build in range(6, 21)]
         records += [dict(beta(21), status="failed"), dict(beta(22), status="building")]
         page = self.parse(records)
         visible = [row for row in page.rows if not row["hidden"]]
         self.assertEqual([row["text"][0] for row in visible],
-                         [f"0.2.1 Build #{build}" for build in range(20, 10, -1)])
+                         [f"0.2.1 Build #{build}" for build in range(20, 15, -1)])
         self.assertEqual(len(page.rows), 15)
         self.assertEqual([row["download"] for row in page.rows],
                          [record["download"] for record in reversed(records[:15])])
@@ -193,8 +193,8 @@ class DownloadPageTests(unittest.TestCase):
         self.assertEqual(page.button["aria-controls"], "releases")
         self.assertEqual(page.button["aria-expanded"], "false")
 
-    def test_ten_or_fewer_releases_need_no_button(self):
-        for count in (0, 1, 10):
+    def test_five_or_fewer_releases_need_no_button(self):
+        for count in (0, 1, 5):
             with self.subTest(count=count):
                 page = self.parse([beta(build) for build in range(6, 6 + count)])
                 self.assertEqual(len(page.rows), count)
@@ -207,7 +207,7 @@ class DownloadPageTests(unittest.TestCase):
         page = self.parse(records)
         visible = [row for row in page.rows if not row["hidden"]]
         self.assertEqual([row["text"][0] for row in visible],
-                         [f"0.2.1 Build #{build}" for build in range(18, 8, -1)])
+                         [f"0.2.1 Build #{build}" for build in range(18, 13, -1)])
         self.assertTrue(all(row["text"][1] == "Stable" for row in visible))
         self.assertEqual(len(page.rows), 33)
         self.assertEqual(page.selector["aria-controls"], "releases")

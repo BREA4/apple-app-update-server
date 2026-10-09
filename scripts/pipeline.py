@@ -361,7 +361,7 @@ def render_site(state, signer):
 
 
 def render_downloads(state):
-    initial_limit = 10
+    initial_limit = 5
     published = sorted((record for record in state["builds"] if record["status"] in ("beta", "stable")),
                        key=lambda record: record["build"], reverse=True)
     counts = {channel: sum(record["status"] == channel for record in published) for channel in ("stable", "beta")}
