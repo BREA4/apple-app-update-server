@@ -220,9 +220,16 @@
       "build": 21,
       "sourceSHA": "47f85ad970416a8f48df4024af66663940d1d17c",
       "runID": "37888148214",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.4-beta-build-21",
-      "filename": "Breach-0.4-build-21-arm64.zip"
+      "filename": "Breach-0.4-build-21-arm64.zip",
+      "signature": "OI77ojmE/G9lHxCKoy+aAfMjuWai7+olnP5xb+QDSA4H233TSiBv23PilftdWRxgS6kH9CiIf+yQqkR7yjNnDQ==",
+      "sha256": "5491407d9b99d3c9bc8219a4ca197eb035a2e16d6a1b212387b30016c1d83e75",
+      "bytes": 24844449,
+      "notes": "Breach 0.4 Beta\n\nSoftware updates reinstall an existing network helper after relaunch and verify it before restoring your connection. macOS asks for administrator permission to authorize the updated helper.\n\nIf authorization is declined or helper verification fails, Breach stays disconnected and opens Settings \u2192 Permissions to retry. Updates also replace the helper when Breach was disconnected, and keep it uninstalled if it was not present before the update.\n\nThe network helper controls System Proxy and Enhanced Mode. It accepts only the updated signed app and its bundled command-line tool.\n\nThis build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach's existing Ed25519 signing key.",
+      "publishedAt": "Fri, 09 Oct 2026 05:24:53 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.4-beta-build-21/Breach-0.4-build-21-arm64.zip"
     }
   ]
 }
