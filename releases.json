@@ -444,9 +444,16 @@
       "build": 35,
       "sourceSHA": "f5e27e49d497eee22a2590a3aefac42812576a50",
       "runID": "37928696449",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.5-beta-build-35",
-      "filename": "Breach-0.5-build-35-arm64.dmg"
+      "filename": "Breach-0.5-build-35-arm64.dmg",
+      "signature": "SUxksyqE8VKaoXf8PvQdgKKDvovwxeO9DoKA+3GQV9EHU30k1rTmT88nrepOpjCX2srZ6wP7y14YLeOdioPXCg==",
+      "sha256": "fe42046ef203378247b43228d6ff3784c9aff99b2400c156a0e6a6906d601f08",
+      "bytes": 25819419,
+      "notes": "Breach 0.5 Beta\n\nGENERAL UPDATES\n\n- Added trackpad pinch zoom and two-finger panning to the route map.\n- Added horizontal trackpad swipes between dashboard pages. Map panning and horizontal editors keep their own gestures.\n- Added Command-7 for Map. Command-1 through Command-7 open the seven dashboard sidebar pages.\n- Holding Command for two seconds smoothly reveals shortcuts beside sidebar names. Releasing Command or leaving the dashboard hides them.\n- Simplified Startup, Notifications, Performance and Updates settings.\n- Performance settings now focus on Energy saving with a clearer battery explanation.\n- Renamed Enhanced Mode to Enhanced Protection throughout the app.\n- Clarified Network helper setup and what System Proxy does when on or off.\n- Updated About with \"Stay connected with the things you love\" and a single Third-Party Notices button.\n- Engine settings now save automatically across General, Network, DNS, TUN and Sniffer.\n- Valid changes apply on the next connection. Disconnect before editing Engine settings.\n\nBUG FIXES\n\n- Invalid or incomplete Engine fields show an inline explanation and keep the last valid setting.\n- Unfinished Engine edits no longer leak into saved settings when App preferences change or Breach quits.\n\nThis beta is not Apple-notarized.",
+      "publishedAt": "Fri, 09 Oct 2026 12:18:07 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.5-beta-build-35/Breach-0.5-build-35-arm64.dmg"
     }
   ]
 }
