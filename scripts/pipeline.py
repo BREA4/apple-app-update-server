@@ -362,17 +362,27 @@ def render_site(state, signer):
 
 def render_downloads(state):
     initial_limit = 10
+    published = sorted((record for record in state["builds"] if record["status"] in ("beta", "stable")),
+                       key=lambda record: record["build"], reverse=True)
     rows = []
-    for record in sorted(state["builds"], key=lambda record: record["build"], reverse=True):
-        if record["status"] not in ("beta", "stable"):
-            continue
+    for record in published:
         hidden = " hidden" if len(rows) >= initial_limit else ""
         rows.append(f'<tr{hidden}><td>{html.escape(title(record))}</td><td>{record["status"].title()}</td>'
                     f'<td><a href="{html.escape(record["download"], quote=True)}">Download ZIP</a></td></tr>')
     page = '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">'
     page += '<link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any">'
-    page += '<title>Breach downloads</title><style>body{font:16px system-ui;max-width:760px;margin:64px auto;padding:0 24px;background:#faf9f6;color:#242424}td,th{padding:12px 24px 12px 0;text-align:left}a{color:#145fa6}table{border-collapse:collapse}tr{border-bottom:1px solid #ddd}button{font:inherit;margin-top:20px;padding:10px 16px;color:#145fa6;background:transparent;border:1px solid currentColor;border-radius:6px;cursor:pointer}</style>'
+    page += '<title>Breach downloads</title><style>body{font:16px system-ui;max-width:760px;margin:64px auto;padding:0 24px;background:#faf9f6;color:#242424}td,th{padding:12px 24px 12px 0;text-align:left}a{color:#145fa6}table{border-collapse:collapse}tr{border-bottom:1px solid #ddd}button{font:inherit;margin-top:20px;padding:10px 16px;color:#145fa6;background:transparent;border:1px solid currentColor;border-radius:6px;cursor:pointer}'
+    page += '.downloads{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}.download-button{display:inline-flex;flex-direction:column;gap:4px;padding:12px 16px;border:1px solid #145fa6;border-radius:6px;text-decoration:none}.download-button strong{font-weight:600}.download-button small{font-size:13px}.download-button:hover{background:#edf3f8}.download-button.stable{background:#145fa6;color:#fff}.download-button.stable:hover{background:#104d87}</style>'
     page += '<h1>Breach downloads</h1><p>For Apple Silicon Macs running macOS 27 or later.</p>'
+    downloads = []
+    for channel in ("stable", "beta"):
+        record = next((record for record in published if record["status"] == channel), None)
+        if record:
+            downloads.append(f'<a class="download-button {channel}" id="latest-{channel}" '
+                             f'href="{html.escape(record["download"], quote=True)}">'
+                             f'<strong>Download latest {channel}</strong><small>{html.escape(title(record))}</small></a>')
+    if downloads:
+        page += '<div class="downloads">' + "".join(downloads) + '</div>'
     page += '<table><thead><tr><th>Version</th><th>Channel</th><th>Download</th></tr></thead><tbody id="releases">'
     page += "".join(rows) + '</tbody></table>'
     if len(rows) > initial_limit:

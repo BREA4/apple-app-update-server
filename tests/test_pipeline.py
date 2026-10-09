@@ -143,6 +143,7 @@ class DownloadPageTests(unittest.TestCase):
             def __init__(self):
                 super().__init__()
                 self.rows = []
+                self.latest_downloads = {}
                 self.button = None
                 self.row = None
 
@@ -152,6 +153,8 @@ class DownloadPageTests(unittest.TestCase):
                     self.row = {"hidden": "hidden" in attrs, "text": [], "download": None}
                 elif tag == "a" and self.row is not None:
                     self.row["download"] = attrs["href"]
+                elif tag == "a" and attrs.get("id") in ("latest-stable", "latest-beta"):
+                    self.latest_downloads[attrs["id"]] = attrs["href"]
                 elif tag == "button":
                     self.button = attrs
 
@@ -191,6 +194,22 @@ class DownloadPageTests(unittest.TestCase):
                 self.assertEqual(len(page.rows), count)
                 self.assertTrue(all(not row["hidden"] for row in page.rows))
                 self.assertIsNone(page.button)
+
+    def test_latest_downloads_select_newest_successful_build_per_channel(self):
+        stable = pipeline.promoted(beta(20))
+        latest_beta = beta(21)
+        records = [stable, beta(7), pipeline.promoted(beta(6)), latest_beta,
+                   dict(beta(22), status="failed"), dict(beta(23), status="building")]
+        page = self.parse(records)
+        self.assertEqual(page.latest_downloads, {"latest-stable": stable["download"],
+                                               "latest-beta": latest_beta["download"]})
+
+    def test_latest_downloads_only_show_available_channels(self):
+        for records, expected in (([], {}), ([beta()], {"latest-beta": beta()["download"]}),
+                                  ([pipeline.promoted(beta())],
+                                   {"latest-stable": pipeline.promoted(beta())["download"]})):
+            with self.subTest(channels=list(expected)):
+                self.assertEqual(self.parse(records).latest_downloads, expected)
 
 
 class SourceOrderTests(unittest.TestCase):
