@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.5 Build #33</title>
+      <sparkle:version>33</sparkle:version>
+      <sparkle:shortVersionString>0.5</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Fri, 09 Oct 2026 11:37:40 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.5 Beta&lt;br&gt;&lt;br&gt;GENERAL UPDATES&lt;br&gt;&lt;br&gt;- Engine settings now save automatically across General, Network, DNS, TUN and Sniffer.&lt;br&gt;- Valid changes apply on the next connection. Disconnect before editing Engine settings.&lt;br&gt;&lt;br&gt;BUG FIXES&lt;br&gt;&lt;br&gt;- Invalid or incomplete Engine fields show an inline explanation and keep the last valid setting.&lt;br&gt;- Unfinished Engine edits no longer leak into saved settings when App preferences change or Breach quits.&lt;br&gt;&lt;br&gt;This beta is not Apple-notarized.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.5-beta-build-33/Breach-0.5-build-33-arm64.dmg" length="25835285" type="application/octet-stream" sparkle:edSignature="RJchlflALKknfTJ177Bf1Q/IVcy+NEnzkZk67PGwJLPD2xF3WTfREIXAlz9ekRiki7Uv7YY2e/XFOR2jvlCkCg=="></enclosure>
+    </item>
+    <item>
       <title>0.4.1 Build #32</title>
       <sparkle:version>32</sparkle:version>
       <sparkle:shortVersionString>0.4.1</sparkle:shortVersionString>
@@ -237,6 +247,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: C9hL5HOoWLift24ACPkGrlaZFlsOW1Hv+9o8Zr3k5+pI3GV1xwp9Cs4zv2AvE1GYlav54XjopbIDhzDG+5lCDg==
-length: 40623
+edSignature: fwVSGqlIinSq/Y9yrw9DILlqIWWv2xvw3/Vp4FIkICMN2XEL8tIiLiABepQKvWBhP76uygnuXLSyWQ7mYkHJBA==
+length: 41901
 -->

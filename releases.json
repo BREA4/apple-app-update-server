@@ -412,9 +412,16 @@
       "build": 33,
       "sourceSHA": "7db924e9e5471636bcb08ad888bd88c2de190172",
       "runID": "37924446381",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.5-beta-build-33",
-      "filename": "Breach-0.5-build-33-arm64.dmg"
+      "filename": "Breach-0.5-build-33-arm64.dmg",
+      "signature": "RJchlflALKknfTJ177Bf1Q/IVcy+NEnzkZk67PGwJLPD2xF3WTfREIXAlz9ekRiki7Uv7YY2e/XFOR2jvlCkCg==",
+      "sha256": "9766344ad0057810cecf1e5926eaeb5cd7f9eeff6f94e04bc750c4d27ee30bed",
+      "bytes": 25835285,
+      "notes": "Breach 0.5 Beta\n\nGENERAL UPDATES\n\n- Engine settings now save automatically across General, Network, DNS, TUN and Sniffer.\n- Valid changes apply on the next connection. Disconnect before editing Engine settings.\n\nBUG FIXES\n\n- Invalid or incomplete Engine fields show an inline explanation and keep the last valid setting.\n- Unfinished Engine edits no longer leak into saved settings when App preferences change or Breach quits.\n\nThis beta is not Apple-notarized.",
+      "publishedAt": "Fri, 09 Oct 2026 11:37:40 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.5-beta-build-33/Breach-0.5-build-33-arm64.dmg"
     }
   ]
 }
