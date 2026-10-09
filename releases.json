@@ -428,9 +428,16 @@
       "build": 34,
       "sourceSHA": "d598c384f1cbf0a3645f389096429c8a384d332f",
       "runID": "37925881429",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.5-beta-build-34",
-      "filename": "Breach-0.5-build-34-arm64.dmg"
+      "filename": "Breach-0.5-build-34-arm64.dmg",
+      "signature": "gs1PZzmy5utqwFrl8zIk5be4eD7T8Eh3lzN0B02+VasOa3FZh35gsiHe5KtTmZI4vzJBSk6AZafdRqbhjQimBA==",
+      "sha256": "a16acb263a42f1405dab615bebb3c2c17fb5bd964af85dc21a65efb2080a6d38",
+      "bytes": 25810099,
+      "notes": "Breach 0.5 Beta\n\nGENERAL UPDATES\n\n- Simplified Startup, Notifications, Performance and Updates settings.\n- Performance settings now focus on Energy saving with a clearer battery explanation.\n- Renamed Enhanced Mode to Enhanced Protection throughout the app.\n- Clarified Network helper setup and what System Proxy does when on or off.\n- Updated About with \"Stay connected with the things you love\" and a single Third-Party Notices button.\n- Engine settings now save automatically across General, Network, DNS, TUN and Sniffer.\n- Valid changes apply on the next connection. Disconnect before editing Engine settings.\n\nBUG FIXES\n\n- Invalid or incomplete Engine fields show an inline explanation and keep the last valid setting.\n- Unfinished Engine edits no longer leak into saved settings when App preferences change or Breach quits.\n\nThis beta is not Apple-notarized.",
+      "publishedAt": "Fri, 09 Oct 2026 11:51:15 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.5-beta-build-34/Breach-0.5-build-34-arm64.dmg"
     }
   ]
 }

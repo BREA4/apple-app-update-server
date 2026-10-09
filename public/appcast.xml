@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.5 Build #34</title>
+      <sparkle:version>34</sparkle:version>
+      <sparkle:shortVersionString>0.5</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Fri, 09 Oct 2026 11:51:15 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.5 Beta&lt;br&gt;&lt;br&gt;GENERAL UPDATES&lt;br&gt;&lt;br&gt;- Simplified Startup, Notifications, Performance and Updates settings.&lt;br&gt;- Performance settings now focus on Energy saving with a clearer battery explanation.&lt;br&gt;- Renamed Enhanced Mode to Enhanced Protection throughout the app.&lt;br&gt;- Clarified Network helper setup and what System Proxy does when on or off.&lt;br&gt;- Updated About with &amp;quot;Stay connected with the things you love&amp;quot; and a single Third-Party Notices button.&lt;br&gt;- Engine settings now save automatically across General, Network, DNS, TUN and Sniffer.&lt;br&gt;- Valid changes apply on the next connection. Disconnect before editing Engine settings.&lt;br&gt;&lt;br&gt;BUG FIXES&lt;br&gt;&lt;br&gt;- Invalid or incomplete Engine fields show an inline explanation and keep the last valid setting.&lt;br&gt;- Unfinished Engine edits no longer leak into saved settings when App preferences change or Breach quits.&lt;br&gt;&lt;br&gt;This beta is not Apple-notarized.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.5-beta-build-34/Breach-0.5-build-34-arm64.dmg" length="25810099" type="application/octet-stream" sparkle:edSignature="gs1PZzmy5utqwFrl8zIk5be4eD7T8Eh3lzN0B02+VasOa3FZh35gsiHe5KtTmZI4vzJBSk6AZafdRqbhjQimBA=="></enclosure>
+    </item>
+    <item>
       <title>0.5 Build #33</title>
       <sparkle:version>33</sparkle:version>
       <sparkle:shortVersionString>0.5</sparkle:shortVersionString>
@@ -247,6 +257,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: fwVSGqlIinSq/Y9yrw9DILlqIWWv2xvw3/Vp4FIkICMN2XEL8tIiLiABepQKvWBhP76uygnuXLSyWQ7mYkHJBA==
-length: 41901
+edSignature: jkNoO+1QVf93G4aPZ/SQRQ3UXftt30mzPXK87svHk5qu1rP7RWEkHpY334AL5g5+YR0DxOyAP7ZCkdAUFKD1Bg==
+length: 43646
 -->
