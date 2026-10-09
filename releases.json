@@ -284,9 +284,16 @@
       "build": 25,
       "sourceSHA": "b5d830c9fce4e63296bae51e43878fcf02cb340d",
       "runID": "37894330988",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.4-beta-build-25",
-      "filename": "Breach-0.4-build-25-arm64.zip"
+      "filename": "Breach-0.4-build-25-arm64.zip",
+      "signature": "EvD+F2jqLcUNyQbfs4xpXeJMLVUzKuIMRoWMX1OVksYENokmm2yWhs7ajROVr24J2ZgQiCPR/p7qSF4G35dLBA==",
+      "sha256": "f2b542977dd81f67286a84a2a63ebb74a9eb89d9eab3240538db6fe9afce3209",
+      "bytes": 24869123,
+      "notes": "Breach 0.4 Beta\n\nThe Profiles actions arrow has more space beside the three dots and rotates up while the menu is open. It stays aligned with the dots and rotates back down when the menu closes.\n\nSettings sidebar icons now follow your chosen accent color immediately in light and dark appearance.\n\nThe map remembers your selected departure city when you reopen the map or restart Breach.\n\nSettings \u2192 Updates now shows a Stable/Beta selector after confirmed beta opt-in. The selector stays available after switching to Stable and restarting Breach. Existing Beta users get it automatically.\n\nSoftware updates reinstall an existing network helper after relaunch and verify it before restoring your connection. macOS asks for administrator permission to authorize the updated helper.\n\nIf authorization is declined or helper verification fails, Breach stays disconnected and opens Settings \u2192 Permissions to retry. Updates also replace the helper when Breach was disconnected, and keep it uninstalled if it was not present before the update.\n\nThe network helper controls System Proxy and Enhanced Mode. It accepts only the updated signed app and its bundled command-line tool.\n\nThis build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach's existing Ed25519 signing key.",
+      "publishedAt": "Fri, 09 Oct 2026 06:39:26 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.4-beta-build-25/Breach-0.4-build-25-arm64.zip"
     }
   ]
 }
