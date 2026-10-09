@@ -8,6 +8,8 @@ Public release automation and download hosting for Breach on Apple Silicon Macs.
 
 New private `main` commits become beta builds through workflows in this public
 repository. Stable releases promote an existing build without rebuilding it.
+New builds are distributed only as DMGs for manual installation and Sparkle
+updates. Previously published ZIP releases remain available unchanged.
 
 The beta workflow polls private `main` every five minutes. To check for unbuilt
 commits immediately:

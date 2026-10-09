@@ -35,7 +35,7 @@ jobs:
         run: sudo xcode-select -s /Applications/Xcode_27.0.app/Contents/Developer
       - name: Resolve Sparkle signing tools
         run: swift package resolve --disable-keychain
-      - name: Promote the exact signed beta ZIP
+      - name: Promote the exact signed beta archive
         env:
           GH_TOKEN: ${{ github.token }}
           SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}

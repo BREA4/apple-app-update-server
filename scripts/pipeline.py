@@ -59,6 +59,15 @@ def title(record):
     return f"{valid_version(record['version'])} Build #{number(record['build'])}"
 
 
+def archive_format(record):
+    # ASVS 5.3.2: only canonical archive names can become paths or asset URLs.
+    prefix = f"Breach-{valid_version(record['version'])}-build-{number(record['build'])}-arm64"
+    for extension in ("dmg", "zip"):
+        if record.get("filename") == f"{prefix}.{extension}":
+            return extension
+    raise ValueError("Invalid release archive filename")
+
+
 def timestamp():
     return datetime.datetime.now(datetime.timezone.utc).strftime("%a, %d %b %Y %H:%M:%S %z")
 
@@ -89,6 +98,7 @@ def validate_state(state):
     for record in state["builds"]:
         build = number(record["build"])
         valid_version(record["version"])
+        archive_format(record)
         if build in seen or record["status"] not in ("building", "failed", "beta", "stable"):
             raise ValueError("Duplicate build or invalid build status")
         if not re.fullmatch(r"[0-9a-f]{40}", record["sourceSHA"]):
@@ -147,7 +157,7 @@ def reserve(state, version, source_sha, run_id):
     build = state["nextBuild"]
     record = {"version": version, "build": build, "sourceSHA": source_sha, "runID": run_id,
               "status": "building", "betaTag": tag(version, build, "beta"),
-              "filename": f"Breach-{version}-build-{build}-arm64.zip"}
+              "filename": f"Breach-{version}-build-{build}-arm64.dmg"}
     state["nextBuild"] += 1
     state["lastSourceSHA"] = source_sha
     state["builds"].append(record)
@@ -298,15 +308,59 @@ def download(url, destination, maximum):
             file.write(chunk)
 
 
+def create_archive(app, archive):
+    if archive.suffix == ".zip":
+        # Preserve the format of builds allocated before the DMG transition.
+        run("ditto", "-c", "-k", "--sequesterRsrc", "--keepParent", app, archive)
+    elif archive.suffix == ".dmg":
+        with tempfile.TemporaryDirectory(prefix="breach-dmg-stage-") as directory:
+            stage = Path(directory)
+            # ditto preserves framework symlinks, permissions and code signatures.
+            run("ditto", app, stage / "Breach.app")
+            (stage / "Applications").symlink_to("/Applications")
+            run("hdiutil", "create", "-volname", "Breach", "-srcfolder", stage,
+                "-fs", "APFS", "-format", "ULFO", archive)
+    else:
+        raise ValueError("Unsupported release archive format")
+
+
+@contextlib.contextmanager
+def mounted_dmg(archive):
+    with tempfile.TemporaryDirectory(prefix="breach-dmg-verify-") as directory:
+        mount = Path(directory) / "volume"
+        mount.mkdir()
+        # ASVS 5.2.2: hdiutil validates the signed image container before metadata
+        # is read. Read-only mounting keeps verification from changing its bytes.
+        run("hdiutil", "attach", "-readonly", "-nobrowse", "-noautoopen",
+            "-mountpoint", mount, archive)
+        try:
+            yield mount
+        finally:
+            run("hdiutil", "detach", mount)
+
+
 def verify_archive(archive, record, signer):
+    extension = archive_format(record)
     if archive.stat().st_size != record["bytes"] or sha256(archive) != record["sha256"]:
         raise ValueError("Release archive size or SHA-256 differs")
+    # ASVS 11.6.1: authenticate the exact archive with Ed25519 before opening it.
     signer.verify(archive, record["signature"])
-    with zipfile.ZipFile(archive) as file:
-        entry = file.getinfo("Breach.app/Contents/Info.plist")
-        if entry.file_size > 100_000:
-            raise ValueError("Oversized bundle metadata")
-        info = plistlib.loads(file.read(entry))
+    if extension == "zip":
+        with zipfile.ZipFile(archive) as file:
+            entry = file.getinfo("Breach.app/Contents/Info.plist")
+            if entry.file_size > 100_000:
+                raise ValueError("Oversized bundle metadata")
+            info = plistlib.loads(file.read(entry))
+    else:
+        with mounted_dmg(archive) as mount:
+            metadata = mount / "Breach.app/Contents/Info.plist"
+            # ASVS 5.3.2: bundle metadata must stay inside the verified volume.
+            if not metadata.resolve().is_relative_to(mount.resolve()):
+                raise ValueError("Bundle metadata escapes the disk image")
+            if metadata.stat().st_size > 100_000:
+                raise ValueError("Oversized bundle metadata")
+            info = plistlib.loads(metadata.read_bytes())
+            run("codesign", "--verify", "--deep", "--strict", mount / "Breach.app")
     expected = {"CFBundleShortVersionString": record["version"], "CFBundleVersion": str(record["build"]),
                 "SUFeedURL": CONFIG["feedURL"], "SUPublicEDKey": CONFIG["publicKey"],
                 "SURequireSignedFeed": True, "SUVerifyUpdateBeforeExtraction": True}
@@ -369,12 +423,13 @@ def render_downloads(state):
     rows = []
     visible_count = 0
     for record in published:
+        extension = archive_format(record).upper()
         matches = record["status"] == default_channel
         hidden = " hidden" if not matches or visible_count >= initial_limit else ""
         if matches:
             visible_count += 1
         rows.append(f'<tr data-channel="{record["status"]}"{hidden}><td>{html.escape(title(record))}</td><td>{record["status"].title()}</td>'
-                    f'<td><a href="{html.escape(record["download"], quote=True)}">Download ZIP</a></td></tr>')
+                    f'<td><a href="{html.escape(record["download"], quote=True)}">Download {extension}</a></td></tr>')
     page = '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">'
     page += '<link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any">'
     page += '<title>Breach downloads</title><style>body{font:16px system-ui;max-width:760px;margin:64px auto;padding:0 24px;background:#faf9f6;color:#242424}td,th{padding:12px 24px 12px 0;text-align:left}a{color:#145fa6}table{border-collapse:collapse}tr{border-bottom:1px solid #ddd}button{font:inherit;margin-top:20px;padding:10px 16px;color:#145fa6;background:transparent;border:1px solid currentColor;border-radius:6px;cursor:pointer}'
@@ -481,13 +536,14 @@ def release_asset(record, channel, archive, signer):
 def publish_beta(build, source, signer):
     _, state = read_state()
     record = dict(find_build(state, build))
+    archive_format(record)
     if record["status"] not in ("building", "failed", "beta"):
         raise ValueError("This build has already been promoted")
     app = source / "build/Breach.app"
     run("codesign", "--verify", "--deep", "--strict", app)
     with tempfile.TemporaryDirectory(prefix="breach-archive-") as directory:
         archive = Path(directory) / record["filename"]
-        run("ditto", "-c", "-k", "--sequesterRsrc", "--keepParent", app, archive)
+        create_archive(app, archive)
         if archive.stat().st_size > CONFIG["maximumArchiveBytes"]:
             raise ValueError("Archive exceeds its allowed size")
         notes = source / f"updates/notes/{record['version']}-beta.md"
