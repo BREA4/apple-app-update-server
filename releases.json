@@ -364,9 +364,16 @@
       "build": 30,
       "sourceSHA": "c6a14d3918dd1d12d6ac9a273db7eea8176fda63",
       "runID": "37911086912",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.4-beta-build-30",
-      "filename": "Breach-0.4-build-30-arm64.dmg"
+      "filename": "Breach-0.4-build-30-arm64.dmg",
+      "signature": "uIboM0vvPpwxdhipcKRPHZI3UZei983EMqC6PzW/C/cAFGWl1jm0L68gG8SLg+iAQEDRaWuJHVs1DXwdsTU5Cw==",
+      "sha256": "c6d0bf8236cb86b4102cf7a5c8a987f93114b5459ef763ef575f60eb313d0779",
+      "bytes": 25770248,
+      "notes": "Breach 0.4 Beta\n\nGENERAL UPDATES\n\n- Third-party notices now open in a resizable window with selectable text.\n- Automatic subscription updates now default to every hour. Existing preferences are preserved.\n\nSOFTWARE UPDATES\n\n- New downloads use DMG disk images with an Applications shortcut.\n- After beta opt-in, the Stable/Beta selector stays available when switching to Stable or restarting Breach.\n- Updates now replace the installed network helper before reconnecting.\n- Added a password notice before installation. macOS requests administrator permission after relaunch.\n- If helper setup fails or permission is declined, Breach stays disconnected and opens Settings \u2192 Permissions.\n\nBUG FIXES\n\n- Fixed spacing and arrow alignment in the Profiles actions menu.\n- Fixed Settings sidebar icons not following the selected accent color.\n- Fixed the map forgetting the departure city after reopening or restarting Breach.\n\nThis beta is not Apple-notarized.",
+      "publishedAt": "Fri, 09 Oct 2026 09:34:15 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.4-beta-build-30/Breach-0.4-build-30-arm64.dmg"
     }
   ]
 }

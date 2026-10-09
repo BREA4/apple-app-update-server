@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.4 Build #30</title>
+      <sparkle:version>30</sparkle:version>
+      <sparkle:shortVersionString>0.4</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Fri, 09 Oct 2026 09:34:15 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.4 Beta&lt;br&gt;&lt;br&gt;GENERAL UPDATES&lt;br&gt;&lt;br&gt;- Third-party notices now open in a resizable window with selectable text.&lt;br&gt;- Automatic subscription updates now default to every hour. Existing preferences are preserved.&lt;br&gt;&lt;br&gt;SOFTWARE UPDATES&lt;br&gt;&lt;br&gt;- New downloads use DMG disk images with an Applications shortcut.&lt;br&gt;- After beta opt-in, the Stable/Beta selector stays available when switching to Stable or restarting Breach.&lt;br&gt;- Updates now replace the installed network helper before reconnecting.&lt;br&gt;- Added a password notice before installation. macOS requests administrator permission after relaunch.&lt;br&gt;- If helper setup fails or permission is declined, Breach stays disconnected and opens Settings → Permissions.&lt;br&gt;&lt;br&gt;BUG FIXES&lt;br&gt;&lt;br&gt;- Fixed spacing and arrow alignment in the Profiles actions menu.&lt;br&gt;- Fixed Settings sidebar icons not following the selected accent color.&lt;br&gt;- Fixed the map forgetting the departure city after reopening or restarting Breach.&lt;br&gt;&lt;br&gt;This beta is not Apple-notarized.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.4-beta-build-30/Breach-0.4-build-30-arm64.dmg" length="25770248" type="application/octet-stream" sparkle:edSignature="uIboM0vvPpwxdhipcKRPHZI3UZei983EMqC6PzW/C/cAFGWl1jm0L68gG8SLg+iAQEDRaWuJHVs1DXwdsTU5Cw=="></enclosure>
+    </item>
+    <item>
       <title>0.4 Build #29</title>
       <sparkle:version>29</sparkle:version>
       <sparkle:shortVersionString>0.4</sparkle:shortVersionString>
@@ -207,6 +217,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: ewojhGUjSFkhRe24VuphBUanyXCue65v0pQhxuzhGphFpNQ3NxGsq+nNlwM0xrS7da4qmmMInPDECTTjIji+CA==
-length: 36552
+edSignature: SCdl7Y70zUVFNBrueZA1BOOgXBFyqRHy94US/x6EMDvrfQGvvQfy54oy5mYWvzQ8u2uM+K/RagjGYD010g4kCw==
+length: 38406
 -->
