@@ -380,9 +380,16 @@
       "build": 31,
       "sourceSHA": "6d7739b77f85b168fcda4d607e6ec54c3057c4f8",
       "runID": "37911089000",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.4.1-beta-build-31",
-      "filename": "Breach-0.4.1-build-31-arm64.dmg"
+      "filename": "Breach-0.4.1-build-31-arm64.dmg",
+      "signature": "s3CqCqXZJ0xTgxPaR93j/bkfaGz5hLr/fxskJcD177KEFeUKHC/87GF7VTNzyeHMGVQJJr4/KpQ/db4dz5J7DQ==",
+      "sha256": "bc7f0dbaa4ca9460c7271fa8570b26cc05bcd26012f53086239454d75b56e412",
+      "bytes": 25805420,
+      "notes": "Breach 0.4.1 Beta\n\nBUG FIXES\n\n- Fixed flickering when switching between Rule, Global and Direct in the dashboard toolbar.\n- Fixed rapid mode changes reverting to an earlier selection.\n- Failed mode changes now restore the previous working mode.\n\nThis beta is not Apple-notarized.",
+      "publishedAt": "Fri, 09 Oct 2026 09:40:28 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.4.1-beta-build-31/Breach-0.4.1-build-31-arm64.dmg"
     }
   ]
 }

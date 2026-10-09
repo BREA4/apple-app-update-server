@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.4.1 Build #31</title>
+      <sparkle:version>31</sparkle:version>
+      <sparkle:shortVersionString>0.4.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Fri, 09 Oct 2026 09:40:28 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.4.1 Beta&lt;br&gt;&lt;br&gt;BUG FIXES&lt;br&gt;&lt;br&gt;- Fixed flickering when switching between Rule, Global and Direct in the dashboard toolbar.&lt;br&gt;- Fixed rapid mode changes reverting to an earlier selection.&lt;br&gt;- Failed mode changes now restore the previous working mode.&lt;br&gt;&lt;br&gt;This beta is not Apple-notarized.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.4.1-beta-build-31/Breach-0.4.1-build-31-arm64.dmg" length="25805420" type="application/octet-stream" sparkle:edSignature="s3CqCqXZJ0xTgxPaR93j/bkfaGz5hLr/fxskJcD177KEFeUKHC/87GF7VTNzyeHMGVQJJr4/KpQ/db4dz5J7DQ=="></enclosure>
+    </item>
+    <item>
       <title>0.4 Build #30</title>
       <sparkle:version>30</sparkle:version>
       <sparkle:shortVersionString>0.4</sparkle:shortVersionString>
@@ -217,6 +227,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: SCdl7Y70zUVFNBrueZA1BOOgXBFyqRHy94US/x6EMDvrfQGvvQfy54oy5mYWvzQ8u2uM+K/RagjGYD010g4kCw==
-length: 38406
+edSignature: Y7XJUWDhXZAotJF+QuCKEUltbCG/yNetVZHdyvUciNZfWO1ZjzhiHh2z1uDomMXeeETTPdNgw1zxwBQ6nQxfCg==
+length: 39474
 -->
