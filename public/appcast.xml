@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.3 Build #20</title>
+      <sparkle:version>20</sparkle:version>
+      <sparkle:shortVersionString>0.3</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Fri, 09 Oct 2026 04:54:20 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.3&lt;br&gt;&lt;br&gt;Dashboard now opens in a smaller 1040 × 720 point window and can shrink to an 840 × 560 point content area. The toolbar and sidebar remain available, and dense pages scroll at smaller sizes.&lt;br&gt;&lt;br&gt;Settings now opens in a separate native Mac window with a Liquid Glass sidebar and grouped controls. App preferences save immediately, and Command-comma reopens the last pane used in the current session.&lt;br&gt;&lt;br&gt;General, Network, DNS, TUN and Sniffer configuration have moved from Dashboard into Settings. The Breach application menu has one Settings command with a gear icon. Duplicate headings and the Settings sidebar toggle have been removed.&lt;br&gt;&lt;br&gt;Accent color swatches match their names. Clicking the Breach logo in the main sidebar opens Dashboard&amp;#x27;s Overview page. The Breach application menu responds promptly when opening or returning to the app.&lt;br&gt;&lt;br&gt;This build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach&amp;#x27;s existing Ed25519 signing key.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.3-beta-build-20/Breach-0.3-build-20-arm64.zip" length="24841306" type="application/octet-stream" sparkle:edSignature="+AZiwHy1vY8bjB61EIJ4jGsmuJWZpHgtD9MiK8sWKR5HH2fh5in9NO8a75C8rrF1lGYjr7fm9xevcMIEMLwlDQ=="></enclosure>
+    </item>
+    <item>
       <title>0.3 Build #19</title>
       <sparkle:version>19</sparkle:version>
       <sparkle:shortVersionString>0.3</sparkle:shortVersionString>
@@ -107,6 +117,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: lYPPhnK+COC5pRax7xM+jvamazO77Nw3zY9CWr25cfiiBHHZpKjWRrwU4/YoPuMVH0opDD+MA7RVRSvPqi97AQ==
-length: 14852
+edSignature: ltYTnU4dSNuUPPTvmdFjDF+rg9ilMxOOnTfIZBcGJtEUvWQtFpl/FNHGmEPxU1k/MqNGlXt3vvAXrD4AulO4Aw==
+length: 16667
 -->
