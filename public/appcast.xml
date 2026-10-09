@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.4 Build #24</title>
+      <sparkle:version>24</sparkle:version>
+      <sparkle:shortVersionString>0.4</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Fri, 09 Oct 2026 06:20:34 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.4 Beta&lt;br&gt;&lt;br&gt;Settings sidebar icons now follow your chosen accent color immediately in light and dark appearance.&lt;br&gt;&lt;br&gt;The map remembers your selected departure city when you reopen the map or restart Breach.&lt;br&gt;&lt;br&gt;Settings → Updates now shows a Stable/Beta selector after confirmed beta opt-in. The selector stays available after switching to Stable and restarting Breach. Existing Beta users get it automatically.&lt;br&gt;&lt;br&gt;Software updates reinstall an existing network helper after relaunch and verify it before restoring your connection. macOS asks for administrator permission to authorize the updated helper.&lt;br&gt;&lt;br&gt;If authorization is declined or helper verification fails, Breach stays disconnected and opens Settings → Permissions to retry. Updates also replace the helper when Breach was disconnected, and keep it uninstalled if it was not present before the update.&lt;br&gt;&lt;br&gt;The network helper controls System Proxy and Enhanced Mode. It accepts only the updated signed app and its bundled command-line tool.&lt;br&gt;&lt;br&gt;This build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach&amp;#x27;s existing Ed25519 signing key.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.4-beta-build-24/Breach-0.4-build-24-arm64.zip" length="24862849" type="application/octet-stream" sparkle:edSignature="b/xRGikXmXCRAW5XIMCbIY323s7qLm9fKLmYj+Pl6rQ1QDAPhM8L2g/B49Ow7PCvqBd3kwp7YyclKxQL08G3Dg=="></enclosure>
+    </item>
+    <item>
       <title>0.4 Build #23</title>
       <sparkle:version>23</sparkle:version>
       <sparkle:shortVersionString>0.4</sparkle:shortVersionString>
@@ -147,6 +157,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: uBvHbWeck5vzrTULFKmFOznO4Zy/dlBE1ineJFwUh6APswPa6w0jzR99oIo8qB5ODY3w/QnRsHbkPUUhfz/VAQ==
-length: 21834
+edSignature: jj+vOgc9FmSoduTJ5sHi8WMXYDU4WqpiArC3Q2B/K8rxe2k98YlpO0tdFNgJDedq951uVyCeUZP3mWlO1DFKCw==
+length: 23823
 -->
