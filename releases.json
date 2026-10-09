@@ -460,9 +460,16 @@
       "build": 36,
       "sourceSHA": "649f6be716d1a6f79c847c94afb73670f78386f5",
       "runID": "37929890249",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.5-beta-build-36",
-      "filename": "Breach-0.5-build-36-arm64.dmg"
+      "filename": "Breach-0.5-build-36-arm64.dmg",
+      "signature": "677H/kMSbZyO31Whll0h6KY8wzcCWQE1ppYSI7Bgq5Hc9Ih5ulKNLuQZdppn7k06/R2EMDV0WuCfOKLMMWg1Aw==",
+      "sha256": "f4a21df1b1553da7bff6b39670ee813f312c23ee2be072765095b9825672c7ff",
+      "bytes": 25814867,
+      "notes": "Breach 0.5 Beta\n\nGENERAL UPDATES\n\n- Removed the dashboard footer and moved the Energy saving notice to the sidebar, where it appears while energy-saving mode is active.\n- Added trackpad pinch zoom and two-finger panning to the route map.\n- Added horizontal trackpad swipes between dashboard pages. Map panning and horizontal editors keep their own gestures.\n- Added Command-7 for Map. Command-1 through Command-7 open the seven dashboard sidebar pages.\n- Holding Command for two seconds smoothly reveals shortcuts beside sidebar names. Releasing Command or leaving the dashboard hides them.\n- Simplified Startup, Notifications, Performance and Updates settings.\n- Performance settings now focus on Energy saving with a clearer battery explanation.\n- Renamed Enhanced Mode to Enhanced Protection throughout the app.\n- Clarified Network helper setup and what System Proxy does when on or off.\n- Updated About with \"Stay connected with the things you love\" and a single Third-Party Notices button.\n- Engine settings now save automatically across General, Network, DNS, TUN and Sniffer.\n- Valid changes apply on the next connection. Disconnect before editing Engine settings.\n\nBUG FIXES\n\n- Invalid or incomplete Engine fields show an inline explanation and keep the last valid setting.\n- Unfinished Engine edits no longer leak into saved settings when App preferences change or Breach quits.\n\nThis beta is not Apple-notarized.",
+      "publishedAt": "Fri, 09 Oct 2026 12:28:57 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.5-beta-build-36/Breach-0.5-build-36-arm64.dmg"
     }
   ]
 }

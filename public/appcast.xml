@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.5 Build #36</title>
+      <sparkle:version>36</sparkle:version>
+      <sparkle:shortVersionString>0.5</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Fri, 09 Oct 2026 12:28:57 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.5 Beta&lt;br&gt;&lt;br&gt;GENERAL UPDATES&lt;br&gt;&lt;br&gt;- Removed the dashboard footer and moved the Energy saving notice to the sidebar, where it appears while energy-saving mode is active.&lt;br&gt;- Added trackpad pinch zoom and two-finger panning to the route map.&lt;br&gt;- Added horizontal trackpad swipes between dashboard pages. Map panning and horizontal editors keep their own gestures.&lt;br&gt;- Added Command-7 for Map. Command-1 through Command-7 open the seven dashboard sidebar pages.&lt;br&gt;- Holding Command for two seconds smoothly reveals shortcuts beside sidebar names. Releasing Command or leaving the dashboard hides them.&lt;br&gt;- Simplified Startup, Notifications, Performance and Updates settings.&lt;br&gt;- Performance settings now focus on Energy saving with a clearer battery explanation.&lt;br&gt;- Renamed Enhanced Mode to Enhanced Protection throughout the app.&lt;br&gt;- Clarified Network helper setup and what System Proxy does when on or off.&lt;br&gt;- Updated About with &amp;quot;Stay connected with the things you love&amp;quot; and a single Third-Party Notices button.&lt;br&gt;- Engine settings now save automatically across General, Network, DNS, TUN and Sniffer.&lt;br&gt;- Valid changes apply on the next connection. Disconnect before editing Engine settings.&lt;br&gt;&lt;br&gt;BUG FIXES&lt;br&gt;&lt;br&gt;- Invalid or incomplete Engine fields show an inline explanation and keep the last valid setting.&lt;br&gt;- Unfinished Engine edits no longer leak into saved settings when App preferences change or Breach quits.&lt;br&gt;&lt;br&gt;This beta is not Apple-notarized.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.5-beta-build-36/Breach-0.5-build-36-arm64.dmg" length="25814867" type="application/octet-stream" sparkle:edSignature="677H/kMSbZyO31Whll0h6KY8wzcCWQE1ppYSI7Bgq5Hc9Ih5ulKNLuQZdppn7k06/R2EMDV0WuCfOKLMMWg1Aw=="></enclosure>
+    </item>
+    <item>
       <title>0.5 Build #35</title>
       <sparkle:version>35</sparkle:version>
       <sparkle:shortVersionString>0.5</sparkle:shortVersionString>
@@ -267,6 +277,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: dXQkMw27jpFUxXM9D9BGn8JJg3xPQq30up7rthd6IFHUKBkBU3x1lMRsPS45zHRN6JQo1wgaEu3E7ix91NHzBg==
-length: 45849
+edSignature: 9K/vmHlOVJJU4lw0dDaXEgTRsZ8hbrOFFWi2ARrgtui/OnCYJpcbWKgUAttu8SwFXGKJ/KMGLDjJQX5ofm1QDw==
+length: 48196
 -->
