@@ -370,6 +370,7 @@ def render_downloads(state):
         rows.append(f'<tr{hidden}><td>{html.escape(title(record))}</td><td>{record["status"].title()}</td>'
                     f'<td><a href="{html.escape(record["download"], quote=True)}">Download ZIP</a></td></tr>')
     page = '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">'
+    page += '<link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any">'
     page += '<title>Breach downloads</title><style>body{font:16px system-ui;max-width:760px;margin:64px auto;padding:0 24px;background:#faf9f6;color:#242424}td,th{padding:12px 24px 12px 0;text-align:left}a{color:#145fa6}table{border-collapse:collapse}tr{border-bottom:1px solid #ddd}button{font:inherit;margin-top:20px;padding:10px 16px;color:#145fa6;background:transparent;border:1px solid currentColor;border-radius:6px;cursor:pointer}</style>'
     page += '<h1>Breach downloads</h1><p>For Apple Silicon Macs running macOS 27 or later.</p>'
     page += '<table><thead><tr><th>Version</th><th>Channel</th><th>Download</th></tr></thead><tbody id="releases">'
