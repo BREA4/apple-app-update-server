@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.4 Build #27</title>
+      <sparkle:version>27</sparkle:version>
+      <sparkle:shortVersionString>0.4</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Fri, 09 Oct 2026 07:22:20 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.4 Beta&lt;br&gt;&lt;br&gt;Settings → About → Open Third-Party Notices now opens a resizable Breach window. The text supports selection and copying, and the window follows your appearance setting.&lt;br&gt;&lt;br&gt;Subscriptions now update automatically every hour by default. Your saved on/off choice and interval are preserved. Change either in Settings → Subscriptions.&lt;br&gt;&lt;br&gt;The Profiles actions arrow has more space beside the three dots and rotates up while the menu is open. It stays aligned with the dots and rotates back down when the menu closes.&lt;br&gt;&lt;br&gt;Settings sidebar icons now follow your chosen accent color immediately in light and dark appearance.&lt;br&gt;&lt;br&gt;The map remembers your selected departure city when you reopen the map or restart Breach.&lt;br&gt;&lt;br&gt;Settings → Updates now shows a Stable/Beta selector after confirmed beta opt-in. The selector stays available after switching to Stable and restarting Breach. Existing Beta users get it automatically.&lt;br&gt;&lt;br&gt;Software updates reinstall an existing network helper after relaunch and verify it before restoring your connection. macOS asks for administrator permission to authorize the updated helper.&lt;br&gt;&lt;br&gt;If authorization is declined or helper verification fails, Breach stays disconnected and opens Settings → Permissions to retry. Updates also replace the helper when Breach was disconnected, and keep it uninstalled if it was not present before the update.&lt;br&gt;&lt;br&gt;The network helper controls System Proxy and Enhanced Mode. It accepts only the updated signed app and its bundled command-line tool.&lt;br&gt;&lt;br&gt;This build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach&amp;#x27;s existing Ed25519 signing key.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.4-beta-build-27/Breach-0.4-build-27-arm64.zip" length="24878569" type="application/octet-stream" sparkle:edSignature="o1hWKyCLvZK7y9YAkgKIuD5n719IhvWT+WL8+bt85/MtuiUx6SmtGpdbxTS9SbUjPPUo1kANYTHK7lJB01caBw=="></enclosure>
+    </item>
+    <item>
       <title>0.4 Build #26</title>
       <sparkle:version>26</sparkle:version>
       <sparkle:shortVersionString>0.4</sparkle:shortVersionString>
@@ -177,6 +187,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: AUuOU8Br+1lGCKcsVvARXh9J2zRfXSHYAS5HlQ4pXIhqlkG9ktfXxhPqENW3FCnwFnEWvW/v/uab/V3+1SSoAg==
-length: 28374
+edSignature: F1WByyccpsssIQBBZUbWubkhfS8R1eQYGJMhEIIuxz18Y8PWnRNAGfv1yyIp+38vVUXCz+CxEcCSkCqoi/bcDA==
+length: 30932
 -->
