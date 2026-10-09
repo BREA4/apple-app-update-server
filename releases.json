@@ -300,9 +300,16 @@
       "build": 26,
       "sourceSHA": "d76497f1971943170f59ba97cc519da14d0bbaeb",
       "runID": "37895635328",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.4-beta-build-26",
-      "filename": "Breach-0.4-build-26-arm64.zip"
+      "filename": "Breach-0.4-build-26-arm64.zip",
+      "signature": "DMbItwRpjBbvgvOrHU3hyeTuq0TRfynoEKhqhAEx40rP2t20OpTpZzUwPopRcJXgrExtj0Ven5WkOiHbeko9DA==",
+      "sha256": "475c8edf4136a0de372ede01dc8aa58c1cde3b4b1866bee2196f872f60ccc67f",
+      "bytes": 24869742,
+      "notes": "Breach 0.4 Beta\n\nSubscriptions now update automatically every hour by default. Your saved on/off choice and interval are preserved. Change either in Settings \u2192 Subscriptions.\n\nThe Profiles actions arrow has more space beside the three dots and rotates up while the menu is open. It stays aligned with the dots and rotates back down when the menu closes.\n\nSettings sidebar icons now follow your chosen accent color immediately in light and dark appearance.\n\nThe map remembers your selected departure city when you reopen the map or restart Breach.\n\nSettings \u2192 Updates now shows a Stable/Beta selector after confirmed beta opt-in. The selector stays available after switching to Stable and restarting Breach. Existing Beta users get it automatically.\n\nSoftware updates reinstall an existing network helper after relaunch and verify it before restoring your connection. macOS asks for administrator permission to authorize the updated helper.\n\nIf authorization is declined or helper verification fails, Breach stays disconnected and opens Settings \u2192 Permissions to retry. Updates also replace the helper when Breach was disconnected, and keep it uninstalled if it was not present before the update.\n\nThe network helper controls System Proxy and Enhanced Mode. It accepts only the updated signed app and its bundled command-line tool.\n\nThis build uses ad-hoc code signing and is not Apple-notarized. Sparkle verifies the feed and download using Breach's existing Ed25519 signing key.",
+      "publishedAt": "Fri, 09 Oct 2026 06:55:33 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.4-beta-build-26/Breach-0.4-build-26-arm64.zip"
     }
   ]
 }
