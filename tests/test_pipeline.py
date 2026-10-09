@@ -217,12 +217,12 @@ class DownloadPageTests(unittest.TestCase):
         records += [dict(beta(21), status="failed"), dict(beta(22), status="building")]
         page = self.parse(records)
         visible = [row for row in page.rows if not row["hidden"]]
-        self.assertEqual([row["text"][0] for row in visible],
+        self.assertEqual([" ".join(row["text"][:2]) for row in visible],
                          [f"0.2.1 Build #{build}" for build in range(20, 15, -1)])
         self.assertEqual(len(page.rows), 15)
         self.assertEqual([row["download"] for row in page.rows],
                          [record["download"] for record in reversed(records[:15])])
-        self.assertTrue(all(row["text"][1] == "Beta" for row in visible))
+        self.assertTrue(all(row["text"][2] == "Beta" for row in visible))
         self.assertIsNone(page.selector)
         self.assertEqual(page.button["aria-controls"], "releases")
         self.assertEqual(page.button["aria-expanded"], "false")
@@ -247,9 +247,9 @@ class DownloadPageTests(unittest.TestCase):
         records += [pipeline.promoted(beta(build)) for build in range(6, 19)]
         page = self.parse(records)
         visible = [row for row in page.rows if not row["hidden"]]
-        self.assertEqual([row["text"][0] for row in visible],
+        self.assertEqual([" ".join(row["text"][:2]) for row in visible],
                          [f"0.2.1 Build #{build}" for build in range(18, 13, -1)])
-        self.assertTrue(all(row["text"][1] == "Stable" for row in visible))
+        self.assertTrue(all(row["text"][2] == "Stable" for row in visible))
         self.assertEqual(len(page.rows), 33)
         self.assertEqual(page.selector["aria-controls"], "releases")
         self.assertEqual([option["value"] for option in page.options], ["stable", "beta"])
@@ -259,7 +259,7 @@ class DownloadPageTests(unittest.TestCase):
     def test_stable_only_catalog_needs_no_channel_selector(self):
         page = self.parse([pipeline.promoted(beta())])
         self.assertFalse(page.rows[0]["hidden"])
-        self.assertEqual(page.rows[0]["text"][1], "Stable")
+        self.assertEqual(page.rows[0]["text"][2], "Stable")
         self.assertIsNone(page.selector)
         self.assertIsNone(page.button)
 

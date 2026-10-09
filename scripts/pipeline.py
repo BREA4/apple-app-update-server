@@ -427,11 +427,13 @@ def render_downloads(state):
         hidden = " hidden" if not matches or visible_count >= initial_limit else ""
         if matches:
             visible_count += 1
-        rows.append(f'<tr data-channel="{record["status"]}"{hidden}><td>{html.escape(title(record))}</td><td>{record["status"].title()}</td>'
+        rows.append(f'<tr data-channel="{record["status"]}"{hidden}><td class="release-version">{html.escape(valid_version(record["version"]))}</td>'
+                    f'<td class="release-build">Build #{number(record["build"])}</td><td>{record["status"].title()}</td>'
                     f'<td><a href="{html.escape(record["download"], quote=True)}">Download</a></td></tr>')
     page = '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">'
     page += '<link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any">'
     page += '<title>Breach downloads</title><style>body{font:16px system-ui;max-width:760px;margin:64px auto;padding:0 24px;background:#faf9f6;color:#242424}td,th{padding:12px 24px 12px 0;text-align:left}a{color:#145fa6}table{border-collapse:collapse}tr{border-bottom:1px solid #ddd}button{font:inherit;margin-top:20px;padding:10px 16px;color:#145fa6;background:transparent;border:1px solid currentColor;border-radius:6px;cursor:pointer}'
+    page += '.release-version,.release-build{white-space:nowrap;font-variant-numeric:tabular-nums}.release-version{padding-right:12px}'
     page += '.downloads{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}.download-button{display:inline-flex;flex-direction:column;gap:4px;padding:12px 16px;border:1px solid #145fa6;border-radius:6px;text-decoration:none}.download-button,button{transition:background-color 180ms ease,transform 180ms ease}.download-button strong{font-weight:600}.download-button small{font-size:13px}.download-button:hover,.download-button:focus-visible,button:hover,button:focus-visible{background:#edf3f8;transform:translateY(-2px)}.download-button.stable{background:#145fa6;color:#fff}.download-button.stable:hover,.download-button.stable:focus-visible{background:#104d87}'
     page += '.channel-picker{margin:24px 0}.channel-picker label{margin-right:12px}.channel-picker select{font:inherit;padding:8px 12px;border:1px solid #ddd;border-radius:6px;background:#faf9f6;color:#242424}'
     page += '@media (prefers-reduced-motion:reduce){.download-button,button{transition:none}.download-button:hover,.download-button:focus-visible,button:hover,button:focus-visible{transform:none}}</style>'
@@ -448,7 +450,7 @@ def render_downloads(state):
     has_selector = bool(counts["stable"] and counts["beta"])
     if has_selector:
         page += '<div class="channel-picker" id="channel-picker" hidden><label for="release-channel">Release channel</label><select id="release-channel" aria-controls="releases"><option value="stable" selected>Stable</option><option value="beta">Beta</option></select></div>'
-    page += '<table><thead><tr><th>Version</th><th>Channel</th><th>Download</th></tr></thead>'
+    page += '<table><thead><tr><th colspan="2" scope="colgroup">Version</th><th>Channel</th><th>Download</th></tr></thead>'
     page += f'<tbody id="releases" data-channel="{default_channel}" data-limit="{initial_limit}">'
     page += "".join(rows) + '</tbody></table>'
     has_more = max(counts.values()) > initial_limit
