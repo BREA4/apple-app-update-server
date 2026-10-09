@@ -235,10 +235,10 @@ class DownloadPageTests(unittest.TestCase):
                 self.assertTrue(all(not row["hidden"] for row in page.rows))
                 self.assertIsNone(page.button)
 
-    def test_download_labels_match_dmg_and_historical_zip_assets(self):
+    def test_download_labels_are_the_same_for_dmg_and_historical_zip_assets(self):
         records = [beta(6), beta(7, "dmg")]
         page = self.parse(records)
-        self.assertEqual([row["text"][-1] for row in page.rows], ["Download DMG", "Download ZIP"])
+        self.assertEqual([row["text"][-1] for row in page.rows], ["Download", "Download"])
         self.assertEqual([row["download"] for row in page.rows],
                          [record["download"] for record in reversed(records)])
 
