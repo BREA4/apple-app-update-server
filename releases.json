@@ -492,7 +492,7 @@
       "build": 38,
       "sourceSHA": "db57a35c54147391c6bab94cfcc36ee5a4585396",
       "runID": "38029303381",
-      "status": "building",
+      "status": "failed",
       "betaTag": "0.6-beta-build-38",
       "filename": "Breach-0.6-build-38-arm64.dmg"
     }
