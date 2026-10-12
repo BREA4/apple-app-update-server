@@ -11,8 +11,9 @@ repository. Stable releases promote an existing build without rebuilding it.
 New builds are distributed only as DMGs for manual installation and Sparkle
 updates. Previously published ZIP releases remain available unchanged.
 
-The beta workflow polls private `main` every five minutes. To check for unbuilt
-commits immediately:
+Each push to private `main` dispatches the public beta workflow. It builds
+unprocessed main commits in order and triggers another run while commits remain.
+There is no scheduled polling. To recover a missed trigger:
 
 ```sh
 gh workflow run build-beta.yml --repo BREA4/apple-app-update-server -f force=false

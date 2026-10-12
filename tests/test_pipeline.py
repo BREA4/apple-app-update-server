@@ -1,5 +1,5 @@
 import copy
-import datetime
+import contextlib
 from html.parser import HTMLParser
 import importlib.util
 import json
@@ -281,6 +281,84 @@ class DownloadPageTests(unittest.TestCase):
 
 
 class SourceOrderTests(unittest.TestCase):
+    @contextlib.contextmanager
+    def source_history(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            def git(*args):
+                return subprocess.run(["git", *args], cwd=root, check=True,
+                                      capture_output=True, text=True).stdout.strip()
+            git("init", "--quiet")
+            git("config", "user.name", "Pipeline test")
+            git("config", "user.email", "test@example.invalid")
+            git("config", "commit.gpgsign", "false")
+            shas = []
+            for index in range(4):
+                (root / "release.json").write_text(json.dumps({"version": f"0.2.{index}"}))
+                git("add", "release.json")
+                git("commit", "--quiet", "-m", f"Revision {index}")
+                shas.append(git("rev-parse", "HEAD"))
+            (root / ".git/FETCH_HEAD").write_text(shas[-1] + "\n")
+            @contextlib.contextmanager
+            def checkout(destination):
+                shutil.copytree(root, destination)
+                yield {}
+            with patch.object(pipeline, "source_checkout", side_effect=checkout):
+                yield root, shas
+
+    def test_one_push_drains_multiple_commits_in_order_even_after_a_failed_build(self):
+        with self.source_history() as (_, shas):
+            catalog = dict(state(), lastSourceSHA=shas[0])
+            def update(change, message):
+                change(catalog)
+                return catalog
+            with patch.object(pipeline, "read_state", return_value=("public-head", catalog)), \
+                 patch.object(pipeline, "update_state", side_effect=update) as writer, \
+                 patch.object(pipeline, "api") as api, patch.object(pipeline, "output") as output:
+                for index, sha in enumerate(shas[1:]):
+                    with patch.dict(pipeline.os.environ, GITHUB_RUN_ID=f"push-{index}"):
+                        pipeline.plan(False)
+                    record = catalog["builds"][-1]
+                    self.assertEqual(record["sourceSHA"], sha)
+                    self.assertEqual(record["version"], f"0.2.{index + 1}")
+                    if index == 1:
+                        pipeline.failed(record["build"])
+                    else:
+                        record["status"] = "beta"
+                    pipeline.dispatch_next()
+                    self.assertEqual(api.call_count, min(index + 1, 2))
+                self.assertEqual([record["build"] for record in catalog["builds"]], [6, 7, 8])
+                self.assertEqual(catalog["builds"][1]["status"], "failed")
+                for call in api.call_args_list:
+                    self.assertEqual(call.args, (pipeline.endpoint("dispatches"),
+                                                {"event_type": "apple-app-main"}))
+                original = copy.deepcopy(catalog)
+                writer.reset_mock()
+                with patch.dict(pipeline.os.environ, GITHUB_RUN_ID="duplicate-notification"):
+                    pipeline.plan(False)
+                output.assert_called_with(needed="false")
+                pipeline.dispatch_next()
+                writer.assert_not_called()
+                self.assertEqual(api.call_count, 2)
+                self.assertEqual(catalog, original)
+
+    def test_retry_keeps_the_original_source_and_does_not_move_the_cursor_back(self):
+        with self.source_history() as (_, shas):
+            catalog = dict(state(), lastSourceSHA=shas[0])
+            def update(change, message):
+                change(catalog)
+                return catalog
+            with patch.object(pipeline, "read_state", return_value=("public-head", catalog)), \
+                 patch.object(pipeline, "update_state", side_effect=update), \
+                 patch.object(pipeline, "output") as output:
+                for run_id in ("first-run", "second-run", "first-run"):
+                    with patch.dict(pipeline.os.environ, GITHUB_RUN_ID=run_id):
+                        pipeline.plan(False)
+                self.assertEqual(len(catalog["builds"]), 2)
+                self.assertEqual(catalog["nextBuild"], 8)
+                self.assertEqual(catalog["lastSourceSHA"], shas[2])
+                output.assert_called_with(needed="true", build=6, source_sha=shas[1])
+
     def test_main_commits_are_built_oldest_first_and_force_uses_current_main(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -483,28 +561,6 @@ class TransactionTests(unittest.TestCase):
                 verify.assert_called_once()
                 api.assert_called_once()
                 command.assert_not_called()
-
-    def test_idle_heartbeat_keeps_build_counter_and_source_cursor_intact(self):
-        initial = state()
-        original = copy.deepcopy(initial)
-        old = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=31)).isoformat()
-        def update(change, message):
-            self.assertTrue(change(initial))
-            self.assertEqual(message, "Keep automatic release checks active")
-        with patch.object(pipeline, "api", return_value={"committer": {"date": old}}), \
-             patch.object(pipeline, "update_state", side_effect=update) as writer:
-            pipeline.keep_schedule_active("old-head")
-            writer.assert_called_once()
-        self.assertIn("lastHeartbeatAt", initial)
-        del initial["lastHeartbeatAt"]
-        self.assertEqual(initial, original)
-
-    def test_active_repository_does_not_create_heartbeat_commits(self):
-        recent = datetime.datetime.now(datetime.timezone.utc).isoformat()
-        with patch.object(pipeline, "api", return_value={"committer": {"date": recent}}), \
-             patch.object(pipeline, "update_state") as writer:
-            pipeline.keep_schedule_active("recent-head")
-            writer.assert_not_called()
 
     def test_feed_and_catalog_commit_atomically_and_ref_is_not_forced(self):
         initial = state()
