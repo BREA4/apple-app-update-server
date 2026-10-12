@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.6.1 Build #41</title>
+      <sparkle:version>41</sparkle:version>
+      <sparkle:shortVersionString>0.6.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Mon, 12 Oct 2026 08:00:58 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.6.1 Beta&lt;br&gt;&lt;br&gt;GENERAL UPDATES&lt;br&gt;&lt;br&gt;- Renamed Enhanced Protection to Device-wide VPN in controls, keyboard shortcuts and connection notices.&lt;br&gt;- Renamed Network helper to Breach Helper in Settings, installation buttons and messages.&lt;br&gt;- Routing Rules labels now use consistent capitalization.&lt;br&gt;&lt;br&gt;BUG FIXES&lt;br&gt;&lt;br&gt;- Improved compatibility with Tailscale and other VPNs. Breach leaves their network settings alone and keeps Tailscale connections outside Device-wide VPN.&lt;br&gt;- Fixed cases where Install Breach Helper failed after upgrading from an older version, even after entering the administrator password.&lt;br&gt;- If the helper cannot be installed, Breach now explains which step failed instead of asking you to authorize it again.&lt;br&gt;- Fixed a rare case where installing the helper or disconnecting could stop responding.&lt;br&gt;&lt;br&gt;If you previously had trouble installing the helper, try Install Breach Helper in Settings &amp;gt; Permissions again after updating.&lt;br&gt;&lt;br&gt;macOS may show a security warning when you open this beta because it has not been checked by Apple.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.6.1-beta-build-41/Breach-0.6.1-build-41-arm64.dmg" length="26098026" type="application/octet-stream" sparkle:edSignature="D8Q5p8oOebf1GDina9jaStQq3ZjX9a8trxhVfjiHcYlleJSXRCAFiHOyA2QHtxFwJpIPU3AOYvc5nnhUe6YFBQ=="></enclosure>
+    </item>
+    <item>
       <title>0.6.1 Build #40</title>
       <sparkle:version>40</sparkle:version>
       <sparkle:shortVersionString>0.6.1</sparkle:shortVersionString>
@@ -307,6 +317,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: Z09fT/fxrNCMiV+tuIxJFIM1lPdnFXztvfmO6PP51XNkl6ZDIpRQUDMYgaJgq/vac0qcrEWMSoy5Ik7pfrv0Bg==
-length: 56201
+edSignature: WvOS//DaFZ13c/yw6A8kxUv6LwpP1f34Nv1igVgJFmjayls7MFIEauFRdOvsHZpWQFebbE385f8a5J+sgLe+DA==
+length: 58107
 -->
