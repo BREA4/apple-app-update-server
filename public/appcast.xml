@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.6.1 Build #40</title>
+      <sparkle:version>40</sparkle:version>
+      <sparkle:shortVersionString>0.6.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Mon, 12 Oct 2026 07:46:46 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.6.1 Beta&lt;br&gt;&lt;br&gt;BUG FIXES&lt;br&gt;&lt;br&gt;- Improved compatibility with Tailscale and other VPNs. Breach leaves their network settings alone and keeps Tailscale connections outside Enhanced Protection.&lt;br&gt;- Fixed cases where Install Network Helper failed after upgrading from an older version, even after entering the administrator password.&lt;br&gt;- If the helper cannot be installed, Breach now explains which step failed instead of asking you to authorize it again.&lt;br&gt;- Fixed a rare case where installing the helper or disconnecting could stop responding.&lt;br&gt;&lt;br&gt;If you previously had trouble installing the helper, try Install Network Helper in Settings &amp;gt; Permissions again after updating.&lt;br&gt;&lt;br&gt;macOS may show a security warning when you open this beta because it has not been checked by Apple.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.6.1-beta-build-40/Breach-0.6.1-build-40-arm64.dmg" length="26097983" type="application/octet-stream" sparkle:edSignature="fyIUBcLQc54PsDm5+tTj9qKz2GELMl+No9GkkcVe2Nbo4m17morLWwPt7m8Wb0+nzjfOpGe2HAWyqj8DFrdeBA=="></enclosure>
+    </item>
+    <item>
       <title>0.6 Build #38</title>
       <sparkle:version>38</sparkle:version>
       <sparkle:shortVersionString>0.6</sparkle:shortVersionString>
@@ -297,6 +307,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: 6qPD7sNaOv92QlXRciZKDgAvnIs2wkCJLazIb2PvHevkbUNeFCGnf9D2uTOKY8j3B1UucaAf16o/eibsWPZhCw==
-length: 54614
+edSignature: Z09fT/fxrNCMiV+tuIxJFIM1lPdnFXztvfmO6PP51XNkl6ZDIpRQUDMYgaJgq/vac0qcrEWMSoy5Ik7pfrv0Bg==
+length: 56201
 -->
