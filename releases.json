@@ -565,9 +565,16 @@
       "build": 43,
       "sourceSHA": "37ec8ea75986db166a0bcd38fe6cc29198314866",
       "runID": "38261271295",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.7-beta-build-43",
-      "filename": "Breach-0.7-build-43-arm64.dmg"
+      "filename": "Breach-0.7-build-43-arm64.dmg",
+      "signature": "mkXtyfbNGxkpcVGhCQekUiiZcqtY0pS/ke1w8LP+LKg8EEfNd/2COS4RWpGHirm+VnGwG3bhSOEzVYhIcSRXCg==",
+      "sha256": "b819194ab2e2bd89a6e6de3e39d796a76b8f147e5f837245018fbeb9e95ef149",
+      "bytes": 27240757,
+      "notes": "Breach 0.7 Beta\n\nGENERAL UPDATES\n\n- Adding a rule is simpler. Enter a website, IP address or IP range, or choose an app, then choose Direct connection, Block or a route.\n- Rules now show the target and its action in a readable list. App rules show the app's icon.\n- The circular + in Rules opens Add Rule immediately.\n- Edit Rules and the rule form now use the same glass appearance as the rest of Breach. Extra options and the optional table are under Advanced.\n- Settings > Subscriptions > When Cloud updates offers Prefer Cloud, Prefer Local and Ask. Prefer Cloud is the default and replaces your edits. Prefer Local keeps your edits and updates the rest. Ask lets you choose before saving.\n- Profile import now calls the subscription source Cloud.\n\nBUG FIXES\n\n- Saved rules now apply while connected, without restarting the VPN. New connections use the updated rules; existing connections keep their current routes.\n- Cloud updates that change only rules also apply while connected. Changes to routes or other profile settings still need a reconnect.\n- Fixed updates overwriting newer edits made while a Cloud or Local choice was open.\n\nAfter updating, macOS may ask for your password to update Breach Helper.\n\nmacOS may show a security warning when you open this beta because it has not been checked by Apple.",
+      "publishedAt": "Mon, 12 Oct 2026 14:19:42 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.7-beta-build-43/Breach-0.7-build-43-arm64.dmg"
     }
   ]
 }

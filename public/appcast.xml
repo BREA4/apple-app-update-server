@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.7 Build #43</title>
+      <sparkle:version>43</sparkle:version>
+      <sparkle:shortVersionString>0.7</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Mon, 12 Oct 2026 14:19:42 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.7 Beta&lt;br&gt;&lt;br&gt;GENERAL UPDATES&lt;br&gt;&lt;br&gt;- Adding a rule is simpler. Enter a website, IP address or IP range, or choose an app, then choose Direct connection, Block or a route.&lt;br&gt;- Rules now show the target and its action in a readable list. App rules show the app&amp;#x27;s icon.&lt;br&gt;- The circular + in Rules opens Add Rule immediately.&lt;br&gt;- Edit Rules and the rule form now use the same glass appearance as the rest of Breach. Extra options and the optional table are under Advanced.&lt;br&gt;- Settings &amp;gt; Subscriptions &amp;gt; When Cloud updates offers Prefer Cloud, Prefer Local and Ask. Prefer Cloud is the default and replaces your edits. Prefer Local keeps your edits and updates the rest. Ask lets you choose before saving.&lt;br&gt;- Profile import now calls the subscription source Cloud.&lt;br&gt;&lt;br&gt;BUG FIXES&lt;br&gt;&lt;br&gt;- Saved rules now apply while connected, without restarting the VPN. New connections use the updated rules; existing connections keep their current routes.&lt;br&gt;- Cloud updates that change only rules also apply while connected. Changes to routes or other profile settings still need a reconnect.&lt;br&gt;- Fixed updates overwriting newer edits made while a Cloud or Local choice was open.&lt;br&gt;&lt;br&gt;After updating, macOS may ask for your password to update Breach Helper.&lt;br&gt;&lt;br&gt;macOS may show a security warning when you open this beta because it has not been checked by Apple.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.7-beta-build-43/Breach-0.7-build-43-arm64.dmg" length="27240757" type="application/octet-stream" sparkle:edSignature="mkXtyfbNGxkpcVGhCQekUiiZcqtY0pS/ke1w8LP+LKg8EEfNd/2COS4RWpGHirm+VnGwG3bhSOEzVYhIcSRXCg=="></enclosure>
+    </item>
+    <item>
       <title>0.6.1 Build #42</title>
       <sparkle:version>42</sparkle:version>
       <sparkle:shortVersionString>0.6.1</sparkle:shortVersionString>
@@ -327,6 +337,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: h3iClbqbOW7SxXhTU5qc7wJFpLvOnsaZeFTx3M7i6P6wmXyuJ+e3jeGQ86xKnZnPd3KJVG+7irNZ9nqDNtxDCg==
-length: 60013
+edSignature: HedwqiIPFX20bLK3/Rq5R0PNjJhJTtUpNO0oS1oJRz2QSxSBuzUIslym/xs6wugZm//dHyzt68TMdJZIraLmDQ==
+length: 62230
 -->
