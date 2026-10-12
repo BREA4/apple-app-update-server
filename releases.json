@@ -549,9 +549,16 @@
       "build": 42,
       "sourceSHA": "bad5940b133241502525f195375ca7c8fad0df70",
       "runID": "38221205541",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.6.1-beta-build-42",
-      "filename": "Breach-0.6.1-build-42-arm64.dmg"
+      "filename": "Breach-0.6.1-build-42-arm64.dmg",
+      "signature": "AyWiepY+YyofO1a3PXpw3gVnpei38PEoHaAmdr8y4YyKvwZIU52+t2aNwCAiHGw9lQFpbS9p6P9S+irOTZtVBA==",
+      "sha256": "4335b0ea670b2fd30568f815c80de8d9bb888721e4e5afb90800d72cd03fa1a3",
+      "bytes": 26098109,
+      "notes": "Breach 0.6.1 Beta\n\nGENERAL UPDATES\n\n- Renamed Enhanced Protection to Device-wide VPN in controls, keyboard shortcuts and connection notices.\n- Renamed Network helper to Breach Helper in Settings, installation buttons and messages.\n- Routing Rules labels now use consistent capitalization.\n\nBUG FIXES\n\n- Improved compatibility with Tailscale and other VPNs. Breach leaves their network settings alone and keeps Tailscale connections outside Device-wide VPN.\n- Fixed cases where Install Breach Helper failed after upgrading from an older version, even after entering the administrator password.\n- If the helper cannot be installed, Breach now explains which step failed instead of asking you to authorize it again.\n- Fixed a rare case where installing the helper or disconnecting could stop responding.\n\nIf you previously had trouble installing the helper, try Install Breach Helper in Settings > Permissions again after updating.\n\nmacOS may show a security warning when you open this beta because it has not been checked by Apple.",
+      "publishedAt": "Mon, 12 Oct 2026 08:09:47 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.6.1-beta-build-42/Breach-0.6.1-build-42-arm64.dmg"
     }
   ]
 }
