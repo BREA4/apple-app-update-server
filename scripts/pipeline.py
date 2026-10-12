@@ -203,21 +203,23 @@ def output(**values):
         print(text, end="")
 
 
-def keep_schedule_active(head):
-    # An idle public repository loses scheduled workflows after 60 days.
-    commit = api(endpoint(f"git/commits/{head}"))
-    committed = datetime.datetime.fromisoformat(commit["committer"]["date"].replace("Z", "+00:00"))
-    now = datetime.datetime.now(datetime.timezone.utc)
-    if now - committed < datetime.timedelta(days=30):
-        return
-    def heartbeat(state):
-        state["lastHeartbeatAt"] = now.isoformat()
-        return True
-    update_state(heartbeat, "Keep automatic release checks active")
+def dispatch_next():
+    # ASVS 2.3.1: notifications never select source revisions or allocate builds.
+    # Re-read main and the cursor; duplicate notifications become idle runs.
+    _, state = read_state()
+    with tempfile.TemporaryDirectory(prefix="breach-source-") as directory:
+        source = Path(directory) / "source"
+        with source_checkout(source):
+            sha = choose_source(source, state, False)
+    if sha:
+        api(endpoint("dispatches"), {"event_type": "apple-app-main"})
+        print("Triggered the next unbuilt main revision")
+    else:
+        print("Private main has no unbuilt revisions")
 
 
 def plan(force):
-    head, state = read_state()
+    _, state = read_state()
     run_id = os.environ["GITHUB_RUN_ID"]
     retry = next((record for record in state["builds"] if record["runID"] == run_id), None)
     with tempfile.TemporaryDirectory(prefix="breach-source-") as directory:
@@ -225,7 +227,6 @@ def plan(force):
         with source_checkout(source):
             sha = retry["sourceSHA"] if retry else choose_source(source, state, force)
             if not sha:
-                keep_schedule_active(head)
                 output(needed="false")
                 return
             manifest = json.loads(run("git", "show", f"{sha}:release.json", cwd=source).stdout)
@@ -608,6 +609,7 @@ def main():
     commands = parser.add_subparsers(dest="command", required=True)
     plan_parser = commands.add_parser("plan")
     plan_parser.add_argument("--force", action="store_true")
+    commands.add_parser("dispatch-next")
     fetch = commands.add_parser("checkout")
     fetch.add_argument("build", type=number)
     fetch.add_argument("destination", type=Path)
@@ -621,6 +623,8 @@ def main():
     args = parser.parse_args()
     if args.command == "plan":
         plan(args.force)
+    elif args.command == "dispatch-next":
+        dispatch_next()
     elif args.command == "checkout":
         checkout(args.build, args.destination)
     elif args.command == "failed":

@@ -2,8 +2,8 @@ name: Build beta
 run-name: Build beta from private main
 
 on:
-  schedule:
-    - cron: '*/5 * * * *'
+  repository_dispatch:
+    types: [apple-app-main]
   workflow_dispatch:
     inputs:
       force:
@@ -120,3 +120,31 @@ jobs:
       contents: read
       pages: write
       id-token: write
+
+  continue:
+    needs: [plan, build, deploy]
+    # ASVS 2.3.1: drain later main commits even after an allocated build fails.
+    if: always() && !cancelled() && needs.plan.outputs.needed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Read private main using BREA4 PREA4ER
+        id: source-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3
+        with:
+          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_CLIENT_KEY }}
+          owner: BREA4
+          repositories: apple-app
+          permission-contents: read
+      - name: Trigger the next unbuilt main revision
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_READ_TOKEN: ${{ steps.source-token.outputs.token }}
+        run: python3 scripts/pipeline.py dispatch-next

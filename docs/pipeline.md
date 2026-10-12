@@ -18,37 +18,47 @@ helpers are disabled for the fetch, and the askpass helper is deleted before
 app code runs. Only private main commits are built; fork pull requests run public
 pipeline tests without secrets.
 
-The private repository contains no Actions workflow. Public scheduled runs poll
-main, including when private changes are pushed by an agent or merged in GitHub.
-Both scheduled and manual builds use public standard runners; `xcode-27` supplies
-macOS 27 and Xcode 27 ([runner reference](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)).
-The schedule is best effort, not an immediate push webhook.
-GitHub disables public schedules after 60 days without repository activity.
-An idle poll records a heartbeat when the latest main commit is at least 30 days
-old, keeping checks active without allocating or building another app version.
+## Push triggers and recovery
 
-To check the scheduler itself, list runs with the schedule event:
+The private `Trigger beta build` workflow runs on pushes to `main`, including
+merges. It creates a short-lived App token restricted to
+`BREA4/apple-app-update-server` with Contents write, then sends an
+`apple-app-main` repository dispatch. The App is installed on both repositories;
+the organization variable and secret above must remain available to both.
+Contents write is required by [GitHub's repository dispatch endpoint](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event).
+The private job has no checkout and an empty `GITHUB_TOKEN` permission set.
+
+The public `Build beta` workflow accepts that notification and reads private
+main itself. Dispatch payloads never choose the source, version, or build number.
+One run allocates the oldest unprocessed first-parent main commit. After an
+allocated build finishes, even if it fails, the continuation job rechecks main
+and dispatches another run only when commits remain. A push containing multiple
+commits therefore drains in order. Duplicate notifications stop without a new
+allocation once the cursor catches up. Retries retain their original allocation.
+No workflow has a schedule, and idle runs make no heartbeat commits.
+
+Continuation uses the public workflow's Contents-write `GITHUB_TOKEN`.
+`repository_dispatch` is an [exception to GitHub's workflow recursion restriction](https://docs.github.com/en/actions/concepts/security/github_token#when-github_token-triggers-workflow-runs).
+Builds use public standard runners; `xcode-27` supplies macOS 27 and Xcode 27
+([runner reference](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)).
+
+To check delivery, compare the private push run with the public dispatch run:
 
 ```sh
-gh run list --repo BREA4/apple-app-update-server --workflow build-beta.yml --event schedule --limit 5
-gh api repos/BREA4/apple-app-update-server/actions/workflows/build-beta.yml --jq .state
+gh run list --repo BREA4/apple-app --workflow trigger-beta.yml --event push --limit 5
+gh run list --repo BREA4/apple-app-update-server --workflow build-beta.yml --event repository_dispatch --limit 5
 ```
 
-Manual runs do not confirm that the scheduler works. If the workflow is disabled,
-enable it with `gh workflow enable build-beta.yml --repo BREA4/apple-app-update-server`.
-If it is active but no scheduled runs arrive, check the workflow on the default
-branch and GitHub's Actions status. A commit changing the cron expression updates
-the schedule and its associated actor. Verify recovery with an actual `schedule`
-run; a successful manual dispatch alone does not establish recovery.
+If the private trigger fails, retry that run after repairing its App access, or
+manually dispatch `trigger-beta.yml` in the private repository. If notification
+delivery or continuation is missed, dispatch public `build-beta.yml` with
+`force=false` to resume the queue. Verify recovery with an actual private push
+and public `repository_dispatch` run through release and Pages publication.
+A manual public run alone does not verify cross-repository delivery.
 
-If the active beta workflow still has no scheduled runs, compare it with a
-temporary workflow on `main` using `*/5 * * * *`, `permissions: {}`, and a single
-Ubuntu step that prints the event name. Verify its manual dispatch, then inspect
-its `schedule` events. If neither workflow receives a scheduled event, the
-failure also occurs without the beta workflow's credentials, runner, conditions,
-or concurrency group. An operational GitHub status page does not resolve that
-repository-specific result. Record workflow IDs, cron expressions, commit SHAs,
-and the observation window for GitHub Support, then remove the temporary probe.
+For rollout, merge the public receiver before the private trigger. Pushes made
+with a workflow's `GITHUB_TOKEN` do not produce new push workflow runs; app-writing
+automation must use an App token or explicitly dispatch the private trigger.
 
 Build and promotion workflows share a FIFO concurrency group with `queue: max`.
 This is supported by [GitHub's concurrency syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#concurrency);

@@ -29,10 +29,11 @@ branch supplies source, version metadata, and release notes. CI runs here.
 1. In the private app repository, update `release.json`'s display version when
    needed and write `updates/notes/VERSION-beta.md`. Merge the app changes into
    `main`. The hosted pipeline assigns the actual build number.
-2. The scheduled `Build beta` workflow checks main every five minutes and builds
-   unprocessed main commits in order. GitHub may delay schedules. For an immediate
-   check, dispatch `build-beta.yml` with its default `force=false`. To request an
-   additional build of unchanged main, set `force=true`.
+2. A push to private `main` triggers `Build beta` here through the private
+   `Trigger beta build` workflow. Builds process unprocessed main commits in
+   order and trigger another run while commits remain. There is no schedule.
+   To recover a missed trigger, dispatch `build-beta.yml` with its default
+   `force=false`. To request an additional build of unchanged main, set `force=true`.
 3. Follow the run to completion. A beta is complete when its immutable GitHub
    release has the DMG and `release.json`, the catalog marks it `beta`, and
    `Publish update feed` has deployed the signed feed referencing its asset.
@@ -56,6 +57,6 @@ clients or replace a newer stable build as GitHub's latest release.
   published archive's original bytes. A fresh forced run allocates a new number.
 - If release publication succeeded but Pages deployment failed, dispatch
   `pages.yml` to publish the current signed files.
-- For signing, source access, scheduling, or workflow changes, read
+- For signing, source access, trigger, or workflow changes, read
   [pipeline maintenance](docs/pipeline.md) before editing. Tests and public
   download/signature verification must pass before calling a repair complete.
