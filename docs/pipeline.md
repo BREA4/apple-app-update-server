@@ -11,7 +11,8 @@ Source access uses the organization's installed GitHub App, BREA4 PREA4ER.
 `RELEASE_APP_CLIENT_ID` and `RELEASE_APP_CLIENT_KEY` are existing organization
 Actions credentials. Each source-fetch job creates a short-lived installation
 token restricted to `BREA4/apple-app` with Contents read-only; the action revokes
-it when the job ends. Renew the App key through organization secrets if rotated.
+it when the job ends. After rotating the App key, update both the organization
+secret and the private trigger's repository secret described below.
 Git receives the token through an ephemeral askpass helper, rather than a
 credential in the remote URL or command arguments. Persistent Git credential
 helpers are disabled for the fetch, and the askpass helper is deleted before
@@ -23,8 +24,11 @@ pipeline tests without secrets.
 The private `Trigger beta build` workflow runs on pushes to `main`, including
 merges. It creates a short-lived App token restricted to
 `BREA4/apple-app-update-server` with Contents write, then sends an
-`apple-app-main` repository dispatch. The App is installed on both repositories;
-the organization variable and secret above must remain available to both.
+`apple-app-main` repository dispatch. The App is installed on both repositories.
+The private repository also stores `RELEASE_APP_CLIENT_ID` as an Actions variable
+and `RELEASE_APP_CLIENT_KEY` as an Actions secret at repository level.
+[GitHub Free does not expose organization credentials to private repositories](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets#creating-secrets-for-an-organization).
+Keep both copies of the App key current when rotating it.
 Contents write is required by [GitHub's repository dispatch endpoint](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event).
 The private job has no checkout and an empty `GITHUB_TOKEN` permission set.
 
@@ -55,6 +59,8 @@ delivery or continuation is missed, dispatch public `build-beta.yml` with
 `force=false` to resume the queue. Verify recovery with an actual private push
 and public `repository_dispatch` run through release and Pages publication.
 A manual public run alone does not verify cross-repository delivery.
+An empty client ID or private key in a private trigger run means its repository
+variable or secret is missing; organization visibility alone does not fix it.
 
 For rollout, merge the public receiver before the private trigger. Pushes made
 with a workflow's `GITHUB_TOKEN` do not produce new push workflow runs; app-writing
