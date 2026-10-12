@@ -70,6 +70,10 @@ its default Keychain lookup can otherwise wait for an interactive prompt.
 Swift resolves Sparkle 2.10.0's official tools. App code is tested and built before
 the signing secret is made available to the signing step. Private build logs
 remain in the ephemeral runner and are not printed or uploaded. Tests and release
+failures report SHA-256 prefixes for failing test identifiers, fixed assertion
+categories and error counts. Compare an identifier's first 16 SHA-256 hex digits
+against the private local test log to locate a failure. The summary omits test
+names, source paths, source code and assertion values. Tests and release
 compilation have separate time limits; a timed-out phase fails publication.
 Published assets contain the app DMG and a public release receipt, never a
 source checkout. New allocations use DMG only. Each image uses APFS and LZFSE
