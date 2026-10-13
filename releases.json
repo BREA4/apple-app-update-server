@@ -590,9 +590,16 @@
       "build": 45,
       "sourceSHA": "65df3e6609baed8d2c09b004d0b959211138c46b",
       "runID": "38382626609",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.7.2-beta-build-45",
-      "filename": "Breach-0.7.2-build-45-arm64.dmg"
+      "filename": "Breach-0.7.2-build-45-arm64.dmg",
+      "signature": "D14cEyKhPL5e0Gq3Mo/QkeMrWyhikxCi9QQZxZA/jrldj7bbaLv3M/FIRfqsvnS+JCamr4CqgfDQHeEQWRGeBg==",
+      "sha256": "9427ffdcc75eea1923efba08d5302a08c00051e955cc2fa0de85fe5e0497cb9e",
+      "bytes": 27142291,
+      "notes": "Breach 0.7.2 Beta\n\nBUG FIXES\n\n- Flight paths and planes stay attached to their locations when you drag, zoom, tilt or rotate the map, including the globe view. Map rotation remains available in 2D and 3D.\n- Planes move smoothly along their flight paths, including with Energy saving enabled.\n- The + button in Rules now floats over the list. Rules continue underneath it without a blank strip at the bottom.\n\nAfter updating, macOS may ask for your password to update Breach Helper.\n\nmacOS may show a security warning when you open this beta because it has not been checked by Apple.",
+      "publishedAt": "Tue, 13 Oct 2026 10:28:02 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.7.2-beta-build-45/Breach-0.7.2-build-45-arm64.dmg"
     }
   ]
 }

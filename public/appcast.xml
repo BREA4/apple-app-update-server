@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.7.2 Build #45</title>
+      <sparkle:version>45</sparkle:version>
+      <sparkle:shortVersionString>0.7.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Tue, 13 Oct 2026 10:28:02 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.7.2 Beta&lt;br&gt;&lt;br&gt;BUG FIXES&lt;br&gt;&lt;br&gt;- Flight paths and planes stay attached to their locations when you drag, zoom, tilt or rotate the map, including the globe view. Map rotation remains available in 2D and 3D.&lt;br&gt;- Planes move smoothly along their flight paths, including with Energy saving enabled.&lt;br&gt;- The + button in Rules now floats over the list. Rules continue underneath it without a blank strip at the bottom.&lt;br&gt;&lt;br&gt;After updating, macOS may ask for your password to update Breach Helper.&lt;br&gt;&lt;br&gt;macOS may show a security warning when you open this beta because it has not been checked by Apple.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.7.2-beta-build-45/Breach-0.7.2-build-45-arm64.dmg" length="27142291" type="application/octet-stream" sparkle:edSignature="D14cEyKhPL5e0Gq3Mo/QkeMrWyhikxCi9QQZxZA/jrldj7bbaLv3M/FIRfqsvnS+JCamr4CqgfDQHeEQWRGeBg=="></enclosure>
+    </item>
+    <item>
       <title>0.7 Build #43</title>
       <sparkle:version>43</sparkle:version>
       <sparkle:shortVersionString>0.7</sparkle:shortVersionString>
@@ -337,6 +347,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: HedwqiIPFX20bLK3/Rq5R0PNjJhJTtUpNO0oS1oJRz2QSxSBuzUIslym/xs6wugZm//dHyzt68TMdJZIraLmDQ==
-length: 62230
+edSignature: 2LXF5LqZctnpDPCgKQDjrC6dCD6MJQSs6oigkc1J1B8lFU0tGhYu1c2N9ncdr9sbAYrfwxNySFRm4g6GCyB6BQ==
+length: 63619
 -->
