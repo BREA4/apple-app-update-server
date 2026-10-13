@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "nextBuild": 45,
-  "lastSourceSHA": "86fea16ab18cf89ab07de3d70417701ed7b37b39",
+  "nextBuild": 46,
+  "lastSourceSHA": "65df3e6609baed8d2c09b004d0b959211138c46b",
   "builds": [
     {
       "version": "0.2.1",
@@ -584,6 +584,15 @@
       "status": "failed",
       "betaTag": "0.7.2-beta-build-44",
       "filename": "Breach-0.7.2-build-44-arm64.dmg"
+    },
+    {
+      "version": "0.7.2",
+      "build": 45,
+      "sourceSHA": "65df3e6609baed8d2c09b004d0b959211138c46b",
+      "runID": "38382626609",
+      "status": "building",
+      "betaTag": "0.7.2-beta-build-45",
+      "filename": "Breach-0.7.2-build-45-arm64.dmg"
     }
   ]
 }
