@@ -615,7 +615,7 @@
       "build": 47,
       "sourceSHA": "20dae82054b39cab59026b829396d891e1606ee0",
       "runID": "40831723254",
-      "status": "building",
+      "status": "failed",
       "betaTag": "0.7.5-beta-build-47",
       "filename": "Breach-0.7.5-build-47-arm64.dmg"
     }
