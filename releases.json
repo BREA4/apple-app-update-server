@@ -633,9 +633,16 @@
       "build": 49,
       "sourceSHA": "5bb204fd7b799cdb025c459968afa5209147ae0e",
       "runID": "40833474913",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.7.5-beta-build-49",
-      "filename": "Breach-0.7.5-build-49-arm64.dmg"
+      "filename": "Breach-0.7.5-build-49-arm64.dmg",
+      "signature": "xru2RenwfOOLOtxPwSFqw1Q6abR1n6i2DFqEFjuCJ4QhpM/Gf/evSxwvFV0sCkXG/J4dijaGEuM0DYd2ul6ECw==",
+      "sha256": "e62dd0f46683fa44c1638f543d7498041caf4163fb0b88f3c9a21cbcebf60d46",
+      "bytes": 27243785,
+      "notes": "Breach 0.7.5 Beta\n\nBUG FIXES\n\n- The + button in Rules has a translucent Liquid Glass appearance and stays above the rows as you scroll.\n- Fixed Tailscale device names and pages failing to open alongside Breach in Rule mode. Tailscale keeps its own connection while public websites use your selected rules.\n\nAfter updating, macOS may ask for your password to update Breach Helper.\n\nmacOS may show a security warning when you open this beta because it has not been checked by Apple.",
+      "publishedAt": "Thu, 29 Oct 2026 07:14:31 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.7.5-beta-build-49/Breach-0.7.5-build-49-arm64.dmg"
     }
   ]
 }

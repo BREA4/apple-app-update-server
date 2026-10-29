@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.7.5 Build #49</title>
+      <sparkle:version>49</sparkle:version>
+      <sparkle:shortVersionString>0.7.5</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Thu, 29 Oct 2026 07:14:31 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.7.5 Beta&lt;br&gt;&lt;br&gt;BUG FIXES&lt;br&gt;&lt;br&gt;- The + button in Rules has a translucent Liquid Glass appearance and stays above the rows as you scroll.&lt;br&gt;- Fixed Tailscale device names and pages failing to open alongside Breach in Rule mode. Tailscale keeps its own connection while public websites use your selected rules.&lt;br&gt;&lt;br&gt;After updating, macOS may ask for your password to update Breach Helper.&lt;br&gt;&lt;br&gt;macOS may show a security warning when you open this beta because it has not been checked by Apple.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.7.5-beta-build-49/Breach-0.7.5-build-49-arm64.dmg" length="27243785" type="application/octet-stream" sparkle:edSignature="xru2RenwfOOLOtxPwSFqw1Q6abR1n6i2DFqEFjuCJ4QhpM/Gf/evSxwvFV0sCkXG/J4dijaGEuM0DYd2ul6ECw=="></enclosure>
+    </item>
+    <item>
       <title>0.7.2 Build #45</title>
       <sparkle:version>45</sparkle:version>
       <sparkle:shortVersionString>0.7.2</sparkle:shortVersionString>
@@ -347,6 +357,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: 2LXF5LqZctnpDPCgKQDjrC6dCD6MJQSs6oigkc1J1B8lFU0tGhYu1c2N9ncdr9sbAYrfwxNySFRm4g6GCyB6BQ==
-length: 63619
+edSignature: URpz2IXTeWXuK/Ha/h8NZgAFEo6zccthDf6IbZ6Oh/QWzUWvuioEXoIAdkZcCAfDrFRhv5zW7IuAW1OPaLqUDw==
+length: 64897
 -->
