@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.8 Build #51</title>
+      <sparkle:version>51</sparkle:version>
+      <sparkle:shortVersionString>0.8</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Thu, 29 Oct 2026 14:10:56 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.8 Beta&lt;br&gt;&lt;br&gt;GENERAL UPDATES&lt;br&gt;&lt;br&gt;- Added Russian alongside English. Breach follows your Mac&amp;#x27;s language by default. Choose System Language, English or Русский in Settings &amp;gt; Appearance &amp;gt; Language.&lt;br&gt;- Changing the language updates windows, menus and controls immediately, without restarting your connection.&lt;br&gt;- Help &amp;gt; Report a Problem lets you describe an issue, preview the report and save it on your Mac. Sending reports directly is temporarily unavailable.&lt;br&gt;- BREA4 subscriptions can send connection diagnostics and crash reports to help investigate problems. Diagnostic reports retry automatically after a connection failure.&lt;br&gt;&lt;br&gt;BUG FIXES&lt;br&gt;&lt;br&gt;- The connection mode bar now grows or shrinks to fit its labels when you change languages.&lt;br&gt;- Russian labels fit in the Settings sidebar.&lt;br&gt;&lt;br&gt;After updating, macOS may ask for your password to update Breach Helper.&lt;br&gt;&lt;br&gt;macOS may show a security warning when you open this beta because it has not been checked by Apple.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.8-beta-build-51/Breach-0.8-build-51-arm64.dmg" length="27640671" type="application/octet-stream" sparkle:edSignature="aQ8GElCXmMfBxdwArzrKAg6o6egwq3V3b5yDDYIK4avvYo8t4hupYYV44SrsVNxGZUW7YQQHAc0NVv2CYoLyBA=="></enclosure>
+    </item>
+    <item>
       <title>0.7.5 Build #49</title>
       <sparkle:version>49</sparkle:version>
       <sparkle:shortVersionString>0.7.5</sparkle:shortVersionString>
@@ -357,6 +367,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: URpz2IXTeWXuK/Ha/h8NZgAFEo6zccthDf6IbZ6Oh/QWzUWvuioEXoIAdkZcCAfDrFRhv5zW7IuAW1OPaLqUDw==
-length: 64897
+edSignature: 9ulF0Dpf5Yu0WYukWjeiWkIW1EWN6k/yFoLcIT/ycDuBcidegN7QIYGEpbt6YzDtEln/GBULq0FLoJhibyGTDg==
+length: 66736
 -->

@@ -658,9 +658,16 @@
       "build": 51,
       "sourceSHA": "6e701d2e6163fb191199035f8332781d66fa53fc",
       "runID": "40887439652",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.8-beta-build-51",
-      "filename": "Breach-0.8-build-51-arm64.dmg"
+      "filename": "Breach-0.8-build-51-arm64.dmg",
+      "signature": "aQ8GElCXmMfBxdwArzrKAg6o6egwq3V3b5yDDYIK4avvYo8t4hupYYV44SrsVNxGZUW7YQQHAc0NVv2CYoLyBA==",
+      "sha256": "c9ec7d15ae6cea99b8f2708e6044f0b6d409bee0c340e062236348bb98515f29",
+      "bytes": 27640671,
+      "notes": "Breach 0.8 Beta\n\nGENERAL UPDATES\n\n- Added Russian alongside English. Breach follows your Mac's language by default. Choose System Language, English or \u0420\u0443\u0441\u0441\u043a\u0438\u0439 in Settings > Appearance > Language.\n- Changing the language updates windows, menus and controls immediately, without restarting your connection.\n- Help > Report a Problem lets you describe an issue, preview the report and save it on your Mac. Sending reports directly is temporarily unavailable.\n- BREA4 subscriptions can send connection diagnostics and crash reports to help investigate problems. Diagnostic reports retry automatically after a connection failure.\n\nBUG FIXES\n\n- The connection mode bar now grows or shrinks to fit its labels when you change languages.\n- Russian labels fit in the Settings sidebar.\n\nAfter updating, macOS may ask for your password to update Breach Helper.\n\nmacOS may show a security warning when you open this beta because it has not been checked by Apple.",
+      "publishedAt": "Thu, 29 Oct 2026 14:10:56 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.8-beta-build-51/Breach-0.8-build-51-arm64.dmg"
     }
   ]
 }
