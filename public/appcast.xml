@@ -6,6 +6,16 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <link>https://brea4.github.io/apple-app-update-server/</link>
     <description>Signed Breach releases for Apple Silicon</description>
     <item>
+      <title>0.8.2 Build #52</title>
+      <sparkle:version>52</sparkle:version>
+      <sparkle:shortVersionString>0.8.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <pubDate>Tue, 03 Nov 2026 12:02:29 +0000</pubDate>
+      <description>&lt;p&gt;Breach 0.8.2 Beta&lt;br&gt;&lt;br&gt;GENERAL UPDATES&lt;br&gt;&lt;br&gt;- Profiles now offers Sign In to Breach. Sign in with your brea4.space account in the system browser, then add a profile from an existing Mac device or create a new one.&lt;br&gt;- View your account and manage Mac devices from Profiles. Signing in leaves your current connection running.&lt;br&gt;- Account controls are available in English and Russian.&lt;br&gt;&lt;br&gt;BUG FIXES&lt;br&gt;&lt;br&gt;- Fixed Breach Helper installation failing after downloading or updating Breach. Choose Install Breach Helper in Settings &amp;gt; Permissions to try again.&lt;br&gt;- Fixed a crash when Breach Helper needed to explain a connection error.&lt;br&gt;- Account sign-out removes account profiles while keeping manually imported profiles. Interrupted cleanup resumes when you reopen Breach.&lt;br&gt;&lt;br&gt;After updating, macOS may ask for your password to update Breach Helper.&lt;br&gt;&lt;br&gt;macOS may show a security warning when you open this beta because it has not been checked by Apple.&lt;/p&gt;</description>
+      <enclosure url="https://github.com/BREA4/apple-app-update-server/releases/download/0.8.2-beta-build-52/Breach-0.8.2-build-52-arm64.dmg" length="28059925" type="application/octet-stream" sparkle:edSignature="isR5YAsFHEox0Rb51y9xIDk0Ew/8zn9O9Ev2bItb0GaZSrPqMZYESbkVwM7sqylZ+hrbcMKU1Uz/rroL9zK3Aw=="></enclosure>
+    </item>
+    <item>
       <title>0.8 Build #51</title>
       <sparkle:version>51</sparkle:version>
       <sparkle:shortVersionString>0.8</sparkle:shortVersionString>
@@ -367,6 +377,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </item>
   </channel>
 </rss><!-- sparkle-signatures:
-edSignature: 9ulF0Dpf5Yu0WYukWjeiWkIW1EWN6k/yFoLcIT/ycDuBcidegN7QIYGEpbt6YzDtEln/GBULq0FLoJhibyGTDg==
-length: 66736
+edSignature: gIlbXERiBdbzYIFzTLyRczCNwof+ecGwOWR5GO9NOy1j4Ik1vS+RKrC6BJZT+o3MYXwsVmXdhzcxoqfktcyeBw==
+length: 68523
 -->

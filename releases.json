@@ -674,9 +674,16 @@
       "build": 52,
       "sourceSHA": "ddaf714c99c646b7db21a993bb1a672e23f657df",
       "runID": "41631458476",
-      "status": "building",
+      "status": "beta",
       "betaTag": "0.8.2-beta-build-52",
-      "filename": "Breach-0.8.2-build-52-arm64.dmg"
+      "filename": "Breach-0.8.2-build-52-arm64.dmg",
+      "signature": "isR5YAsFHEox0Rb51y9xIDk0Ew/8zn9O9Ev2bItb0GaZSrPqMZYESbkVwM7sqylZ+hrbcMKU1Uz/rroL9zK3Aw==",
+      "sha256": "04aeab5f956e3420aae312d3e0c382dfab2a06d6aa828cc39823b6144da49b3c",
+      "bytes": 28059925,
+      "notes": "Breach 0.8.2 Beta\n\nGENERAL UPDATES\n\n- Profiles now offers Sign In to Breach. Sign in with your brea4.space account in the system browser, then add a profile from an existing Mac device or create a new one.\n- View your account and manage Mac devices from Profiles. Signing in leaves your current connection running.\n- Account controls are available in English and Russian.\n\nBUG FIXES\n\n- Fixed Breach Helper installation failing after downloading or updating Breach. Choose Install Breach Helper in Settings > Permissions to try again.\n- Fixed a crash when Breach Helper needed to explain a connection error.\n- Account sign-out removes account profiles while keeping manually imported profiles. Interrupted cleanup resumes when you reopen Breach.\n\nAfter updating, macOS may ask for your password to update Breach Helper.\n\nmacOS may show a security warning when you open this beta because it has not been checked by Apple.",
+      "publishedAt": "Tue, 03 Nov 2026 12:02:29 +0000",
+      "feed": "https://brea4.github.io/apple-app-update-server/appcast.xml",
+      "download": "https://github.com/BREA4/apple-app-update-server/releases/download/0.8.2-beta-build-52/Breach-0.8.2-build-52-arm64.dmg"
     }
   ]
 }
